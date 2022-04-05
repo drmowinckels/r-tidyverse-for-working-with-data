@@ -315,7 +315,7 @@ eventbrite:           # optional: alphanumeric key for Eventbrite registration, 
         You can do this by opening RStudio, and in the panel labelled "console"
         (usually in the bottom left corner), type the following:
         <code>
-          install.packages(c("tidyverse", "palmerpenguins"))
+          install.packages("tidyverse")
         </code>
       </p>
     </div>
