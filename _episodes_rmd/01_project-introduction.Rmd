@@ -18,7 +18,7 @@ keypoints:
 - "Create and start an R-project"
 - "Use `install.packages()` to install packages (libraries)."
 - "Use the `here` package to access project files"
-source: qmd
+source: Rmd
 ---
 
 ```{r, include=FALSE}

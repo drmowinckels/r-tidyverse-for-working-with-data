@@ -1,0 +1,20 @@
+---
+title: "Subsetting data with dplyr"
+teaching: 45
+exercises: 6
+questions:
+- "How can I make my data into a longer format?"
+- "How can I get my data into a wider format?"
+objectives:
+- "Use `pivot_longer()` to reshape data into a longer format"
+- "Use `pivot_wider()` to reshape data into a wider format"
+keypoints:
+- "Using `pivot_longer`"
+- "Using `pivot_wider`"
+source: Rmd
+---
+
+```{r, include=FALSE}
+source("../bin/chunk-options.R")
+knitr_fig_path("07-")
+```

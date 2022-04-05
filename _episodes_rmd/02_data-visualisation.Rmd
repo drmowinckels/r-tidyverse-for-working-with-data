@@ -12,7 +12,7 @@ objectives:
 keypoints:
 - "Read data into R"
 - "Use ggplot2 to create different types of plots"
-source: qmd
+source: Rmd
 ---
 
 ```{r, include=FALSE}

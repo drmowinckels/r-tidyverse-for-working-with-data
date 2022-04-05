@@ -11,7 +11,7 @@ objectives:
 keypoints:
 - "Using `pivot_longer`"
 - "Using `pivot_wider`"
-source: qmd
+source: Rmd
 ---
 
 ```{r, include=FALSE}

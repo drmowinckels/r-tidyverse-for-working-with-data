@@ -14,7 +14,7 @@ keypoints:
 - "Using `mutate`"
 - "Using `if_else`"
 - "Using `case_when`"
-source: qmd
+source: Rmd
 ---
 
 ```{r, include=FALSE}
