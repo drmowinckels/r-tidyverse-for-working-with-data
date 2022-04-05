@@ -1,7 +1,7 @@
 ---
 title: "Subsetting data with dplyr"
-teaching: 90
-exercises: 16
+teaching: 45
+exercises: 12
 questions:
 - "How can I subset the number of columns in my data set?"
 - "How can I reduce the number of rows in my data set?"
@@ -55,7 +55,7 @@ knitr::include_graphics("../fig/selecting.gif")
 We first need to make sure we have the tidyverse loaded and the penguins data set at hand.
 ```{r}
 library(tidyverse)
-penguins <- read.csv("data/penguins.csv")
+penguins <- read_csv("data/penguins.csv")
 ```
 
 To select data, we must first tell select which data set we are selecting from, and then give it our selection. Here, we are asking R to `select()` from the `penguins` data set the `island`, `species` and `sex` columns
@@ -344,165 +344,5 @@ By combining AND and OR statements this way, we can slowly create the filtering 
 {: .challenge}
 
 
-## Creating subsetted objects
-
-So far, we have kept working on the penguins data set, without actually altering it. So far, all our actions have been executed, then forgotten by R. Like it never happened. This is actually quite smart, since it makes it harder to do mistakes you can have difficulties changing. 
-
-To store the changes, we have to "assign" the data to a new object in the R environment. Like the penguins data set, which already is an object in our environment we have called "penguins". 
-
-We will now store a filtered version including only the chinstrap penguins, in an object we call `chinstraps`.
-
-```{r}
-chinstraps <- filter(penguins, species == "Chinstrap")
-```
-
-You will likely notice that when we execute this command, nothing is output to the console. That is expected. When we assign the output of a function somewhere, and everything works (*i.e.*, no errors or warnings), nothing happens in the console.
-
-But you should be able to see the new chinstraps object in your environment, and when we type `chinstraps` in the R console, it prints our chinstraps data.
-
-```{r}
-chinstraps
-```
-
-Maybe in this chinstrap data we are also not interested in the bill measurements, so we want to remove them.
-
-```{r}
-chinstraps <- select(chinstraps, -starts_with("bill"))
-chinstraps
-```
-Now our data has two less columns, and many fewer rows. A simpler data set for us to work with. But assigning the chinstrap data twice like this is a lot of typing, and there is a simpler way, using something we call the "pipe".
-
-## The pipe `%>%`
-
-We often want to string together series of functions. This is achieved using pipe operator `%>%`. This takes the value on the left, and passes it as the first argument to the function call on the right. 
-
-`%>%` is not limited to {dplyr} functions. It's an alternative way of writing any R code:
-
-The shortcut to insert the pipe operator is `Ctrl`+`Shift`+`M` for Windows/Linux, and `Cmd`+`Shift`+`M` for Mac.
-
-In the `chinstraps` example, we had the following code to filter the rows and then select our columns.
-
-```{r}
-chinstraps <- filter(penguins, species == "Chinstrap")
-chinstraps <- select(chinstraps, -starts_with("bill"))
-```
-
-Here we first create the chinstraps data from the filtered penguins data set. Then use that chinstraps data to reduce the columns and write it again back to the same chinstraps object.
-It's a little messy. With the pipe, we can make it more streamlined.
-
-```{r}
-chinstraps <- penguins %>% 
-  filter(species == "Chinstrap") %>% 
-  select(-starts_with("bill"))
-```
-
-The end result is the same, but there is less typing and we can "read" the pipeline of data subsetting more like language, if we know how. You can read the pipe operator as **"and then"**. 
-
-So if we translate the code above to human language we could read it as:
-
-> take the penguins data set, and then
-> keep only rows for the chinstrap penguins, and then
-> remove the columns starting with bill
-> and assign the end result to chinstraps.
-
-Learning to read pipes is a great skill, R is not the only programming language that can do this (though the operator is different between languages, the functionality exists in many). 
-
-We can do the entire pipe chain step by step to see what is happening. 
-
-```{r}
-penguins
-```
-
-```{r}
-penguins %>% 
-  filter(species == "Chinstrap")
-```
-
-```{r}
-penguins %>% 
-  filter(species == "Chinstrap") %>% 
-  select(-starts_with("bill"))
-```
-
-So, for each chain step, the output of the previous step is fed into the next step, and that way the commands build on each other until a final end result is made.
-
-And as before, we still are seeing the output of the command chain in the console, meaning we are not storing it.
-Let us do that, again using the assignment.
-
-```{r}
-chinstraps <- penguins %>% 
-  filter(species == "Chinstrap") %>% 
-  select(-starts_with("bill"))
-
-chinstraps
-```
-
-> ## Challenge 13
-> Create a new data set called "biscoe", where you only have data from "Biscoe" island, and where you only have the first 4 columns of data.
-> > ## Solution to Challenge 13
-> >
-> > ```{r}
-> > penguins %>% 
-> >   filter(island == "Biscoe") %>% 
-> >   select(1:4)
-> > ```
-> {: .solution}
-{: .challenge}
-
-## Sorting rows
-So far, we have looked at subsetting the data. But some times, we want to reorganize the data without altering it. In tables, we are used to be able to sort columns in ascending or descending order.
- 
-This can also be done with {dplyr}'s `arrange()` function. arrange does not alter the data *per se*, just the order in which the rows are stored.
-
-```{r}
-penguins %>% 
-  arrange(island)
-```
-
-Here we have sorted the data by the island column. Since island is a factor, it will order by the facor levels, which in this case has Biscoe island as the first category. 
-If we sort a numeric column, it will sort by numeric value.
-
-By default, arrange sorts in ascending order. If you want it sorted by descending order, wrap the column name in `desc()`
-
-```{r}
-penguins %>% 
-  arrange(desc(island))
-```
-
-> ## Challenge 14
-> Arrange the penguins data set by `body_mass_g`.
-> > ## Solution to Challenge 14
-> >
-> > ```{r}
-> > penguins %>% 
-> >   arrange(body_mass_g)
-> > ```
-> {: .solution}
-{: .challenge}
-
-> ## Challenge 15
->  Arrange the penguins data set by descending order of `flipper_length_mm`.
-> > ## Solution to Challenge 15
-> >
-> > ```{r}
-> > penguins %>% 
-> >   arrange(desc(flipper_length_mm))
-> > ```
-> {: .solution}
-{: .challenge}
-
-> ## Challenge 16
-> You can arrange on multiple columns! Try arranging the penguins data set by ascending `island` and descending `flipper_length_mm`, using a comma between the two arguments.
-> > ## Solution to Challenge 16
-> >
-> > ```{r}
-> > penguins %>% 
-> >   arrange(island, desc(flipper_length_mm))
-> > ```
-> {: .solution}
-{: .challenge}
-
 # Wrap-up
-
-Now we've learned about subsetting and sorting our data, so we can create data sets that are suited to our needs.
-We also learned about chaining commands, the use of the pipe to create a series of commands that build on each other to create a final wanted output.
+Now we've learned about subsetting our data, so we can create data sets that are suited to our needs.

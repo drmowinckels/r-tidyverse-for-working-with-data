@@ -1,6 +1,6 @@
 ---
 title: "Introduction to R and RStudio"
-teaching: 20
+teaching: 30
 exercises: 4
 questions:
 - "How to find your way around RStudio?"
@@ -233,15 +233,13 @@ Make sure to comment your code, so you know the intention of each bit, and once 
 
 
 > ## Challenge 4
-> Install the palmerpenguins and here packages, and copy the "penguins.csv" to your data folder.
+> Download the palmer penguins data and place it in uyour `data` folder, calling it `penguins.csv`
 >
-> 1. Install the package with: `install.packages(c("palmerpenguins", "here"))`
-> 2. Find the location of the "penguins.csv" with `palmerpenguins::path_to_file("penguins.csv")`
-> 3. Copy the file to your data folder
-> ```r
-> penguin_path <- palmerpenguins::path_to_file("penguins.csv")
-> file.copy(penguin_path, here::here("data", "penguins.csv"))
-> ```
+> 1. Go to [this link](https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/inst/extdata/penguins.csv)
+> 2. Right click in the browser window
+> 3. Choose "save as..."
+> 4. Navigate to your project's data folder
+> 5. Save the file to this location
 {: .challenge}
 
 > ## Tip: command line in RStudio

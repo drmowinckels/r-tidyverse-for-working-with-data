@@ -1,7 +1,7 @@
 ---
 title: "Visualisation with ggplot2"
 teaching: 60
-exercises: 6
+exercises: 8
 questions:
 - "How do I access my data in R?"
 - "How do I visualise my data with ggplot2?"
@@ -328,6 +328,78 @@ ggplot(data = penguins,
 > >               colour = "black")
 > > ```
 > > Look at that! The data actually reveals something called the "simpsons paradox". It's when a relationship looks to go in a specific direction, but when looking into groups within the data the relationship is the opposite. Here, the overall relationship between bill length and depths looks negative, but when we take into account that there are different species, the relationship is actually positive.
+> {: .solution}
+{: .challenge}
+
+
+## Sub-plots (plot panels)
+
+The last thing we will cover for plots is creating sub-plots.
+Often, we'd like to create the same set of plots, but as distinctly different subplots.
+This way, we dont need to map soo many aesthetics (it can end up being really messy).
+
+Lets say, the last plot we made, we want to understand if there are also differences between male and female penguins.
+In ggplot2, this is called a "facet", and the function we use is called either `facet_wrap` or `facet_grid`. 
+
+```{r}
+ggplot(penguins, 
+      aes(x = bill_depth_mm, 
+          y = bill_length_mm,
+          colour = species)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm") +
+  facet_wrap(~ sex)
+```
+
+The facet's take formula arguments, meaning they contain the `tilde` (~).
+The way often we think about it, trying to "read" the code, is that we facet "over" sex (in this case). 
+
+This plot looks a little crazy though, as we have penguins with missing sex information getting their own panel, and really, it makes more sense to compare the sexes within each species rather than the other way around.
+Let us swap the places of species and sex.
+
+```{r}
+ggplot(penguins, 
+      aes(x = bill_depth_mm, 
+          y = bill_length_mm,
+          colour = sex)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm") +
+  facet_wrap(~ species)
+```
+
+The NA's still look weird, but its definitely better, I think. 
+
+> ## Challenge 7
+> To the plot we just made before, try adding another variable to facet by. For instance, facet by species and island.
+> _Hint: Add another facet variable with the `+`_
+> > ## Solution to Challenge 7
+> >
+> > ```{r}
+> > ggplot(penguins, 
+> >       aes(x = bill_depth_mm, 
+> >           y = bill_length_mm,
+> >           colour = sex)) +
+> >   geom_point(alpha = 0.5) +
+> >   geom_smooth(method = "lm") +
+> >   facet_wrap(~ species + island)
+> > ```
+> {: .solution}
+{: .challenge}
+
+> ## Challenge 8
+> Lets try making the same plot, but this time with facet_grid in stead. Replace facet_wrap with facet_grid, and alter the formula to `species ~ island`. How does that look different?
+> > ## Solution to Challenge 8
+> >
+> > ```{r}
+> > ggplot(penguins, 
+> >       aes(x = bill_depth_mm, 
+> >           y = bill_length_mm,
+> >           colour = sex)) +
+> >   geom_point(alpha = 0.5) +
+> >   geom_smooth(method = "lm") +
+> >   facet_grid(species ~ island)
+> > ```
+> > We now have a grid of facets rather than wrapping rows. THe panels are arranged in a grid of rows and columns, and we can clearly see that there are Adelie penguins on all islands, but the other two species are located on an island each.
 > {: .solution}
 {: .challenge}
 
