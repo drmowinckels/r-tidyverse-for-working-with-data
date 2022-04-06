@@ -48,11 +48,7 @@ Example in longitudinal data design:
 - tall data: a participant has as many rows as longitudinal time points, with measures in separate columns
 
 
-
-~~~
-Error in knitr::include_graphics("../fig/06_tall_wide.gif"): Cannot find the file(s): "../fig/06_tall_wide.gif"
-~~~
-{: .error}
+<img src="../fig/06-tall_wide.gif" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
 
 # Creating longer data
 

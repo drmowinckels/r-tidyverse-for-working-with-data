@@ -51,7 +51,7 @@ We're going to cover 6 of the most commonly used functions as well as using pipe
 Let us first talk about selecting columns. In {dplyr}, the function name for selecting columns is `select()`! Most {tidyverse} function names for functions are inspired by English grammar, which will help us when we are writing our code.
 
 ```{r, echo = FALSE}
-knitr::include_graphics("../fig/selecting.gif")
+knitr::include_graphics("../fig/03-selecting.gif")
 ```
 
 We first need to make sure we have the tidyverse loaded and the penguins data set at hand.
@@ -225,7 +225,7 @@ Now that we know how to select the columns we want, we should take a look at how
 Row filtering is done with the function `filter()`, which takes statements that can be evaluated to `TRUE` or `FALSE`. 
 
 ```{r, echo = FALSE}
-knitr::include_graphics("../fig/filtering.gif")
+knitr::include_graphics("../fig/03-filtering.gif")
 ```
 
 What do we mean with statements that can be evaluated to `TRUE` or `FALSE`?

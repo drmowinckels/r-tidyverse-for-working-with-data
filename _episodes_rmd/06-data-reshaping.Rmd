@@ -52,7 +52,7 @@ Example in longitudinal data design:
 
 
 ```{r, echo = FALSE}
-knitr::include_graphics("../fig/06_tall_wide.gif")
+knitr::include_graphics("../fig/06-tall_wide.gif")
 ```
 
 # Creating longer data
