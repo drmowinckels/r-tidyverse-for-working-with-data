@@ -102,7 +102,7 @@ Now our data has two less columns, and many fewer rows. A simpler data set for u
 
 > ## Challenge 1
 > Create a new data set called "biscoe", where you only have data from "Biscoe" island, and where you only have the first 4 columns of data.
-> > ## Solution to Challenge 1
+> > ## Solution 1
 > >
 > > 
 > > ~~~
@@ -272,7 +272,7 @@ chinstraps
 
 > ## Challenge 2
 > Create a new data set called "biscoe", where you only have data from "Biscoe" island, and where you only have the first 4 columns of data. This time use the pipe.
-> > ## Solution to Challenge 2
+> > ## Solution 2
 > >
 > > 
 > > ~~~
@@ -370,7 +370,7 @@ penguins %>%
 
 > ## Challenge 3
 > Arrange the penguins data set by `body_mass_g`.
-> > ## Solution to Challenge 3
+> > ## Solution 3
 > >
 > > 
 > > ~~~
@@ -403,7 +403,7 @@ penguins %>%
 
 > ## Challenge 4
 >  Arrange the penguins data set by descending order of `flipper_length_mm`.
-> > ## Solution to Challenge 4
+> > ## Solution 4
 > >
 > > 
 > > ~~~
@@ -436,7 +436,7 @@ penguins %>%
 
 > ## Challenge 5
 > You can arrange on multiple columns! Try arranging the penguins data set by ascending `island` and descending `flipper_length_mm`, using a comma between the two arguments.
-> > ## Solution to Challenge 5
+> > ## Solution 5
 > >
 > > 
 > > ~~~
@@ -535,7 +535,7 @@ The order in which you chain commands together matters. Since the pipe sends the
 
 > ## Challenge 6
 > Fix the previous code bit by applying one of the two solutions suggested.
-> > ## Solution to Challenge 6
+> > ## Solution 6
 > >
 > > 
 > > ~~~
@@ -696,7 +696,7 @@ This can be quite convenient if you have particularly large data and need to red
 > ## Challenge 7
 > Create a plot of only data from the Dream island, putting flipper length on the y-axis and species on the x-axis. Make it a box-plot.
 > _Hint: Try geom_boxplot_ 
-> > ## Solution to Challenge 7
+> > ## Solution 7
 > >
 > > 
 > > ~~~

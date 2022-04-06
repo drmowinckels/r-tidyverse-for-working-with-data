@@ -122,7 +122,7 @@ That's pretty neat. By pivoting the data into this longer shape we are able to c
 
 > ## Challenge 1
 > Pivot longer all columns ending with "mm" .
-> > ## Solution to Challenge 1
+> > ## Solution 1
 > >
 > > 
 > > ~~~
@@ -156,7 +156,7 @@ That's pretty neat. By pivoting the data into this longer shape we are able to c
 
 > ## Challenge 2
 > Pivot the penguins data so that all the bill measurements are in the same column.
-> > ## Solution to Challenge 2
+> > ## Solution 2
 > >
 > > 
 > > ~~~
@@ -189,7 +189,7 @@ That's pretty neat. By pivoting the data into this longer shape we are able to c
 
 > ## Challenge 3
 > As mentioned, pivot_longer accepts tidy-selectors. Pivot longer all numerical columns.
-> > ## Solution to Challenge 3
+> > ## Solution 3
 > >
 > > 
 > > ~~~
@@ -291,7 +291,7 @@ now, the pivot gave us 4 columns in stead of two! We told pivot that the column 
 
 > ## Challenge 4
 > Pivot longer all the bill measurements, and alter the names in one go, so that there are three columns named "part", "measure" and "unit" after the pivot.
-> > ## Solution to Challenge 4
+> > ## Solution 4
 > >
 > > 
 > > ~~~
@@ -326,7 +326,7 @@ now, the pivot gave us 4 columns in stead of two! We told pivot that the column 
 
 > ## Challenge 5
 > Pivot longer all the bill measurements, and use the `names_prefix` argument. Give it the string "bill_". What did that do?
-> > ## Solution to Challenge 5
+> > ## Solution 5
 > >
 > > 
 > > ~~~
@@ -361,7 +361,7 @@ now, the pivot gave us 4 columns in stead of two! We told pivot that the column 
 
 > ## Challenge 6
 > Pivot longer all the bill measurements, and use the `names_prefix`, `names_to` and `names_sep` arguments. What do you need to change in `names_to` from the previous example to make it work now that we also use `names_prefix`?
-> > ## Solution to Challenge 6
+> > ## Solution 6
 > >
 > > 
 > > ~~~
@@ -615,7 +615,7 @@ Notice now that in the sample column, the numbers repeat several rows. Where sam
 
 > ## Challenge 6
 > Turn the penguins_long_simple dataset back to its original state
-> > ## Solution to Challenge 6
+> > ## Solution 6
 > >
 > > 
 > > ~~~

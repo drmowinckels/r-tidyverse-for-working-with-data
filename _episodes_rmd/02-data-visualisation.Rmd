@@ -103,7 +103,7 @@ The plus sign indicates that the ggplot is not over yet and that the next line s
 > ## Challenge 1a
 > 1a: How has bill length changed over time? What do you observe? 
 > *Hint: the* `penguins` *dataset has a column called `year`, which should appear on the x-axis.*
-> > ## Solution to Challenge 1a
+> > ## Solution 1a
 > >
 > > ```{r}
 > > ggplot(data = penguins) +
@@ -118,7 +118,7 @@ The plus sign indicates that the ggplot is not over yet and that the next line s
 
 > ## Challenge 1b
 > Try a different `geom_` function called `geom_jitter`. How is that different from `geom_point`?
-> > ## Solution to Challenge 1b
+> > ## Solution 1b
 > >
 > > ```{r}
 > > ggplot(data = penguins) +
@@ -149,7 +149,7 @@ ggplot(data = penguins) +
 
 > ## Challenge 2
 > What will happen if you switch colour to also be by year? Is the graph still useful? Why or why not? What is the difference in the plot between when you colour by island and when you colour by year?
-> > ## Solution to Challenge 2
+> > ## Solution 2
 > >
 > > ```{r}
 > > ggplot(data = penguins) +
@@ -210,7 +210,7 @@ Once more, observe that the colour is now not mapped to any particular variable 
 > ## Challenge 3
 > Change the transparency (alpha) of the data points by year. 
 > _Hint: `alpha` takes a value from 0 (transparent) to 1 (solid)._
-> > ## Solution to Challenge 3
+> > ## Solution 3
 > >
 > > ```{r}
 > > ggplot(data = penguins) + 
@@ -226,7 +226,7 @@ Once more, observe that the colour is now not mapped to any particular variable 
 
 > ## Challenge 4
 > Move the transparency outside the `aes()` and set it to `0.5`. What can we benefit of each one of these methods?
-> > ## Solution to Challenge 4
+> > ## Solution 4
 > >
 > > ```{r}
 > > ggplot(data = penguins) + 
@@ -298,7 +298,7 @@ ggplot(data = penguins,
 
 > ## Challenge 5
 > Modify the plot so the the points are coloured by island, but there is a single regression line.
-> > ## Solution to Challenge 5
+> > ## Solution 5
 > >
 > > ```{r}
 > > ggplot(data = penguins, 
@@ -315,7 +315,7 @@ ggplot(data = penguins,
 > ## Challenge 6
 > Add a regression line to the plot that plots one line for each species, while also plotting one across all species.
 > _Hint: Add another geom!_
-> > ## Solution to Challenge 6
+> > ## Solution 6
 > >
 > > ```{r}
 > > ggplot(penguins, 
@@ -373,7 +373,7 @@ The NA's still look weird, but its definitely better, I think.
 > ## Challenge 7
 > To the plot we just made before, try adding another variable to facet by. For instance, facet by species and island.
 > _Hint: Add another facet variable with the `+`_
-> > ## Solution to Challenge 7
+> > ## Solution 7
 > >
 > > ```{r}
 > > ggplot(penguins, 
@@ -389,7 +389,7 @@ The NA's still look weird, but its definitely better, I think.
 
 > ## Challenge 8
 > Lets try making the same plot, but this time with facet_grid in stead. Replace facet_wrap with facet_grid, and alter the formula to `species ~ island`. How does that look different?
-> > ## Solution to Challenge 8
+> > ## Solution 8
 > >
 > > ```{r}
 > > ggplot(penguins, 

@@ -148,7 +148,7 @@ select(penguins, -bill_length_mm, -bill_depth_mm)
 
 > ## Challenge 1
 > Select the columns sex, year, and species from the penguins dataset.
-> > ## Solution to Challenge 1
+> > ## Solution 1
 > >
 > > 
 > > ~~~
@@ -180,7 +180,7 @@ select(penguins, -bill_length_mm, -bill_depth_mm)
 
 > ## Challenge 2
 > Change your selection so that species comes before sex. What is the difference in the output?
-> > ## Solution to Challenge 2
+> > ## Solution 2
 > >
 > > 
 > > ~~~
@@ -313,7 +313,7 @@ select(penguins, island, species, year, starts_with("bill"))
 
 > ## Challenge 3
 > Select all columns containing an underscore ("_").
-> > ## Solution to Challenge 3
+> > ## Solution 3
 > >
 > > 
 > > ~~~
@@ -345,7 +345,7 @@ select(penguins, island, species, year, starts_with("bill"))
 
 > ## Challenge 4
 > Select the species and sex columns, in addition to all columns ending with "mm"
-> > ## Solution to Challenge 4
+> > ## Solution 4
 > >
 > > 
 > > ~~~
@@ -377,7 +377,7 @@ select(penguins, island, species, year, starts_with("bill"))
 
 > ## Challenge 5
 > De-select all the columns with bill measurements
-> > ## Solution to Challenge 5
+> > ## Solution 5
 > >
 > > 
 > > ~~~
@@ -531,7 +531,7 @@ select(penguins, where(is.numeric))
 
 > ## Challenge 6
 > Select only the columns that are factors from the `penguins` data set.
-> > ## Solution to Challenge 6
+> > ## Solution 6
 > >
 > > 
 > > ~~~
@@ -563,7 +563,7 @@ select(penguins, where(is.numeric))
 
 > ## Challenge 7
 > Select the columns `island`, `species`, as well as all numeric columns from the `penguins` data set.
-> > ## Solution to Challenge 7
+> > ## Solution 7
 > >
 > > 
 > > ~~~
@@ -664,7 +664,7 @@ What is happening, is that R will check if the values in `body_mass_g` are the s
 
 > ## Challenge 8
 > Filter the data so you only have observations from the "Dream" island.
-> > ## Solution to Challenge 8
+> > ## Solution 8
 > >
 > > 
 > > ~~~
@@ -696,7 +696,7 @@ What is happening, is that R will check if the values in `body_mass_g` are the s
 
 > ## Challenge 9
 > Filter the data so you only have observations after 2008
-> > ## Solution to Challenge 9
+> > ## Solution 9
 > >
 > > 
 > > ~~~
@@ -796,7 +796,7 @@ filter(penguins,
 
 > ## Challenge 10
 > Filter the data so you only have observations after 2008, and from "Biscoe" island
-> > ## Solution to Challenge 10
+> > ## Solution 10
 > >
 > > 
 > > ~~~
@@ -830,7 +830,7 @@ filter(penguins,
 
 > ## Challenge 11
 > Filter the data so you only have observations of male penguins of the Chinstrap species
-> > ## Solution to Challenge 11
+> > ## Solution 11
 > >
 > > 
 > > ~~~
@@ -899,7 +899,7 @@ By combining AND and OR statements this way, we can slowly create the filtering 
 
 > ## Challenge 12
 > Filter the data so you only have observations of either male penguins or the Chinstrap species
-> > ## Solution to Challenge 12
+> > ## Solution 12
 > >
 > > 
 > > ~~~
