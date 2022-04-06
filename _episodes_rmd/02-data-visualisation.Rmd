@@ -18,6 +18,7 @@ source: Rmd
 ```{r, include=FALSE}
 source("../bin/chunk-options.R")
 knitr_fig_path("02-")
+penguins <- palmerpenguins::penguins
 ```
 
 
@@ -33,7 +34,7 @@ The advantage of `ggplot2` is that it allows R users to create publication quali
 ## Getting data into R
 We will start by reading the data into R, from the `data` folder you placed them in the last part of the introduction.
 
-```{r}
+```{r, eval = FALSE}
 penguins <- read.csv("data/penguins.csv")
 ```
 

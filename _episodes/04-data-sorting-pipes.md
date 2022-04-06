@@ -39,13 +39,6 @@ chinstraps <- filter(penguins, species == "Chinstrap")
 ~~~
 {: .language-r}
 
-
-
-~~~
-Error in as.ts(x): object 'penguins' not found
-~~~
-{: .error}
-
 You will likely notice that when we execute this command, nothing is output to the console. That is expected. When we assign the output of a function somewhere, and everything works (*i.e.*, no errors or warnings), nothing happens in the console.
 
 But you should be able to see the new chinstraps object in your environment, and when we type `chinstraps` in the R console, it prints our chinstraps data.
@@ -59,28 +52,28 @@ chinstraps
 
 
 ~~~
-Error in eval(expr, envir, enclos): object 'chinstraps' not found
+# A tibble: 68 × 8
+   species   island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+   <fct>     <fct>           <dbl>         <dbl>             <int>       <int>
+ 1 Chinstrap Dream            46.5          17.9               192        3500
+ 2 Chinstrap Dream            50            19.5               196        3900
+ 3 Chinstrap Dream            51.3          19.2               193        3650
+ 4 Chinstrap Dream            45.4          18.7               188        3525
+ 5 Chinstrap Dream            52.7          19.8               197        3725
+ 6 Chinstrap Dream            45.2          17.8               198        3950
+ 7 Chinstrap Dream            46.1          18.2               178        3250
+ 8 Chinstrap Dream            51.3          18.2               197        3750
+ 9 Chinstrap Dream            46            18.9               195        4150
+10 Chinstrap Dream            51.3          19.9               198        3700
+# … with 58 more rows, and 2 more variables: sex <fct>, year <int>
 ~~~
-{: .error}
+{: .output}
 
 Maybe in this chinstrap data we are also not interested in the bill measurements, so we want to remove them.
 
 
 ~~~
 chinstraps <- select(chinstraps, -starts_with("bill"))
-~~~
-{: .language-r}
-
-
-
-~~~
-Error in select(chinstraps, -starts_with("bill")): could not find function "select"
-~~~
-{: .error}
-
-
-
-~~~
 chinstraps
 ~~~
 {: .language-r}
@@ -88,9 +81,22 @@ chinstraps
 
 
 ~~~
-Error in eval(expr, envir, enclos): object 'chinstraps' not found
+# A tibble: 68 × 6
+   species   island flipper_length_mm body_mass_g sex     year
+   <fct>     <fct>              <int>       <int> <fct>  <int>
+ 1 Chinstrap Dream                192        3500 female  2007
+ 2 Chinstrap Dream                196        3900 male    2007
+ 3 Chinstrap Dream                193        3650 male    2007
+ 4 Chinstrap Dream                188        3525 female  2007
+ 5 Chinstrap Dream                197        3725 male    2007
+ 6 Chinstrap Dream                198        3950 female  2007
+ 7 Chinstrap Dream                178        3250 female  2007
+ 8 Chinstrap Dream                197        3750 male    2007
+ 9 Chinstrap Dream                195        4150 female  2007
+10 Chinstrap Dream                198        3700 male    2007
+# … with 58 more rows
 ~~~
-{: .error}
+{: .output}
 Now our data has two less columns, and many fewer rows. A simpler data set for us to work with. But assigning the chinstrap data twice like this is a lot of typing, and there is a simpler way, using something we call the "pipe".
 
 
@@ -101,29 +107,9 @@ Now our data has two less columns, and many fewer rows. A simpler data set for u
 > > 
 > > ~~~
 > >  biscoe <- filter(penguins, island == "Biscoe") 
-> > ~~~
-> > {: .language-r}
-> > 
-> > 
-> > 
-> > ~~~
-> > Error in as.ts(x): object 'penguins' not found
-> > ~~~
-> > {: .error}
-> > 
-> > 
-> > 
-> > ~~~
 > >  biscoe <- select(biscoe, 1:4)
 > > ~~~
 > > {: .language-r}
-> > 
-> > 
-> > 
-> > ~~~
-> > Error in select(biscoe, 1:4): could not find function "select"
-> > ~~~
-> > {: .error}
 > {: .solution}
 {: .challenge}
 
@@ -140,29 +126,9 @@ In the `chinstraps` example, we had the following code to filter the rows and th
 
 ~~~
 chinstraps <- filter(penguins, species == "Chinstrap")
-~~~
-{: .language-r}
-
-
-
-~~~
-Error in as.ts(x): object 'penguins' not found
-~~~
-{: .error}
-
-
-
-~~~
 chinstraps <- select(chinstraps, -starts_with("bill"))
 ~~~
 {: .language-r}
-
-
-
-~~~
-Error in select(chinstraps, -starts_with("bill")): could not find function "select"
-~~~
-{: .error}
 
 Here we first create the chinstraps data from the filtered penguins data set. Then use that chinstraps data to reduce the columns and write it again back to the same chinstraps object.
 It's a little messy. With the pipe, we can make it more streamlined.
@@ -174,13 +140,6 @@ chinstraps <- penguins %>%
   select(-starts_with("bill"))
 ~~~
 {: .language-r}
-
-
-
-~~~
-Error in penguins %>% filter(species == "Chinstrap") %>% select(-starts_with("bill")): could not find function "%>%"
-~~~
-{: .error}
 
 The end result is the same, but there is less typing and we can "read" the pipeline of data subsetting more like language, if we know how. You can read the pipe operator as **"and then"**. 
 
@@ -204,9 +163,22 @@ penguins
 
 
 ~~~
-Error in eval(expr, envir, enclos): object 'penguins' not found
+# A tibble: 344 × 8
+   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+   <fct>   <fct>              <dbl>         <dbl>             <int>       <int>
+ 1 Adelie  Torgersen           39.1          18.7               181        3750
+ 2 Adelie  Torgersen           39.5          17.4               186        3800
+ 3 Adelie  Torgersen           40.3          18                 195        3250
+ 4 Adelie  Torgersen           NA            NA                  NA          NA
+ 5 Adelie  Torgersen           36.7          19.3               193        3450
+ 6 Adelie  Torgersen           39.3          20.6               190        3650
+ 7 Adelie  Torgersen           38.9          17.8               181        3625
+ 8 Adelie  Torgersen           39.2          19.6               195        4675
+ 9 Adelie  Torgersen           34.1          18.1               193        3475
+10 Adelie  Torgersen           42            20.2               190        4250
+# … with 334 more rows, and 2 more variables: sex <fct>, year <int>
 ~~~
-{: .error}
+{: .output}
 
 
 ~~~
@@ -218,9 +190,22 @@ penguins %>%
 
 
 ~~~
-Error in penguins %>% filter(species == "Chinstrap"): could not find function "%>%"
+# A tibble: 68 × 8
+   species   island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+   <fct>     <fct>           <dbl>         <dbl>             <int>       <int>
+ 1 Chinstrap Dream            46.5          17.9               192        3500
+ 2 Chinstrap Dream            50            19.5               196        3900
+ 3 Chinstrap Dream            51.3          19.2               193        3650
+ 4 Chinstrap Dream            45.4          18.7               188        3525
+ 5 Chinstrap Dream            52.7          19.8               197        3725
+ 6 Chinstrap Dream            45.2          17.8               198        3950
+ 7 Chinstrap Dream            46.1          18.2               178        3250
+ 8 Chinstrap Dream            51.3          18.2               197        3750
+ 9 Chinstrap Dream            46            18.9               195        4150
+10 Chinstrap Dream            51.3          19.9               198        3700
+# … with 58 more rows, and 2 more variables: sex <fct>, year <int>
 ~~~
-{: .error}
+{: .output}
 
 
 ~~~
@@ -233,9 +218,22 @@ penguins %>%
 
 
 ~~~
-Error in penguins %>% filter(species == "Chinstrap") %>% select(-starts_with("bill")): could not find function "%>%"
+# A tibble: 68 × 6
+   species   island flipper_length_mm body_mass_g sex     year
+   <fct>     <fct>              <int>       <int> <fct>  <int>
+ 1 Chinstrap Dream                192        3500 female  2007
+ 2 Chinstrap Dream                196        3900 male    2007
+ 3 Chinstrap Dream                193        3650 male    2007
+ 4 Chinstrap Dream                188        3525 female  2007
+ 5 Chinstrap Dream                197        3725 male    2007
+ 6 Chinstrap Dream                198        3950 female  2007
+ 7 Chinstrap Dream                178        3250 female  2007
+ 8 Chinstrap Dream                197        3750 male    2007
+ 9 Chinstrap Dream                195        4150 female  2007
+10 Chinstrap Dream                198        3700 male    2007
+# … with 58 more rows
 ~~~
-{: .error}
+{: .output}
 
 So, for each chain step, the output of the previous step is fed into the next step, and that way the commands build on each other until a final end result is made.
 
@@ -247,19 +245,7 @@ Let us do that, again using the assignment.
 chinstraps <- penguins %>% 
   filter(species == "Chinstrap") %>% 
   select(-starts_with("bill"))
-~~~
-{: .language-r}
 
-
-
-~~~
-Error in penguins %>% filter(species == "Chinstrap") %>% select(-starts_with("bill")): could not find function "%>%"
-~~~
-{: .error}
-
-
-
-~~~
 chinstraps
 ~~~
 {: .language-r}
@@ -267,9 +253,22 @@ chinstraps
 
 
 ~~~
-Error in eval(expr, envir, enclos): object 'chinstraps' not found
+# A tibble: 68 × 6
+   species   island flipper_length_mm body_mass_g sex     year
+   <fct>     <fct>              <int>       <int> <fct>  <int>
+ 1 Chinstrap Dream                192        3500 female  2007
+ 2 Chinstrap Dream                196        3900 male    2007
+ 3 Chinstrap Dream                193        3650 male    2007
+ 4 Chinstrap Dream                188        3525 female  2007
+ 5 Chinstrap Dream                197        3725 male    2007
+ 6 Chinstrap Dream                198        3950 female  2007
+ 7 Chinstrap Dream                178        3250 female  2007
+ 8 Chinstrap Dream                197        3750 male    2007
+ 9 Chinstrap Dream                195        4150 female  2007
+10 Chinstrap Dream                198        3700 male    2007
+# … with 58 more rows
 ~~~
-{: .error}
+{: .output}
 
 > ## Challenge 2
 > Create a new data set called "biscoe", where you only have data from "Biscoe" island, and where you only have the first 4 columns of data. This time use the pipe.
@@ -286,9 +285,22 @@ Error in eval(expr, envir, enclos): object 'chinstraps' not found
 > > 
 > > 
 > > ~~~
-> > Error in penguins %>% filter(island == "Biscoe") %>% select(1:4): could not find function "%>%"
+> > # A tibble: 168 × 4
+> >    species island bill_length_mm bill_depth_mm
+> >    <fct>   <fct>           <dbl>         <dbl>
+> >  1 Adelie  Biscoe           37.8          18.3
+> >  2 Adelie  Biscoe           37.7          18.7
+> >  3 Adelie  Biscoe           35.9          19.2
+> >  4 Adelie  Biscoe           38.2          18.1
+> >  5 Adelie  Biscoe           38.8          17.2
+> >  6 Adelie  Biscoe           35.3          18.9
+> >  7 Adelie  Biscoe           40.6          18.6
+> >  8 Adelie  Biscoe           40.5          17.9
+> >  9 Adelie  Biscoe           37.9          18.6
+> > 10 Adelie  Biscoe           40.5          18.9
+> > # … with 158 more rows
 > > ~~~
-> > {: .error}
+> > {: .output}
 > {: .solution}
 {: .challenge}
 
@@ -307,9 +319,22 @@ penguins %>%
 
 
 ~~~
-Error in penguins %>% arrange(island): could not find function "%>%"
+# A tibble: 344 × 8
+   species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+   <fct>   <fct>           <dbl>         <dbl>             <int>       <int>
+ 1 Adelie  Biscoe           37.8          18.3               174        3400
+ 2 Adelie  Biscoe           37.7          18.7               180        3600
+ 3 Adelie  Biscoe           35.9          19.2               189        3800
+ 4 Adelie  Biscoe           38.2          18.1               185        3950
+ 5 Adelie  Biscoe           38.8          17.2               180        3800
+ 6 Adelie  Biscoe           35.3          18.9               187        3800
+ 7 Adelie  Biscoe           40.6          18.6               183        3550
+ 8 Adelie  Biscoe           40.5          17.9               187        3200
+ 9 Adelie  Biscoe           37.9          18.6               172        3150
+10 Adelie  Biscoe           40.5          18.9               180        3950
+# … with 334 more rows, and 2 more variables: sex <fct>, year <int>
 ~~~
-{: .error}
+{: .output}
 
 Here we have sorted the data by the island column. Since island is a factor, it will order by the facor levels, which in this case has Biscoe island as the first category. 
 If we sort a numeric column, it will sort by numeric value.
@@ -326,9 +351,22 @@ penguins %>%
 
 
 ~~~
-Error in penguins %>% arrange(desc(island)): could not find function "%>%"
+# A tibble: 344 × 8
+   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+   <fct>   <fct>              <dbl>         <dbl>             <int>       <int>
+ 1 Adelie  Torgersen           39.1          18.7               181        3750
+ 2 Adelie  Torgersen           39.5          17.4               186        3800
+ 3 Adelie  Torgersen           40.3          18                 195        3250
+ 4 Adelie  Torgersen           NA            NA                  NA          NA
+ 5 Adelie  Torgersen           36.7          19.3               193        3450
+ 6 Adelie  Torgersen           39.3          20.6               190        3650
+ 7 Adelie  Torgersen           38.9          17.8               181        3625
+ 8 Adelie  Torgersen           39.2          19.6               195        4675
+ 9 Adelie  Torgersen           34.1          18.1               193        3475
+10 Adelie  Torgersen           42            20.2               190        4250
+# … with 334 more rows, and 2 more variables: sex <fct>, year <int>
 ~~~
-{: .error}
+{: .output}
 
 > ## Challenge 3
 > Arrange the penguins data set by `body_mass_g`.
@@ -344,9 +382,22 @@ Error in penguins %>% arrange(desc(island)): could not find function "%>%"
 > > 
 > > 
 > > ~~~
-> > Error in penguins %>% arrange(body_mass_g): could not find function "%>%"
+> > # A tibble: 344 × 8
+> >    species   island    bill_length_mm bill_depth_mm flipper_length_… body_mass_g
+> >    <fct>     <fct>              <dbl>         <dbl>            <int>       <int>
+> >  1 Chinstrap Dream               46.9          16.6              192        2700
+> >  2 Adelie    Biscoe              36.5          16.6              181        2850
+> >  3 Adelie    Biscoe              36.4          17.1              184        2850
+> >  4 Adelie    Biscoe              34.5          18.1              187        2900
+> >  5 Adelie    Dream               33.1          16.1              178        2900
+> >  6 Adelie    Torgersen           38.6          17                188        2900
+> >  7 Chinstrap Dream               43.2          16.6              187        2900
+> >  8 Adelie    Biscoe              37.9          18.6              193        2925
+> >  9 Adelie    Dream               37.5          18.9              179        2975
+> > 10 Adelie    Dream               37            16.9              185        3000
+> > # … with 334 more rows, and 2 more variables: sex <fct>, year <int>
 > > ~~~
-> > {: .error}
+> > {: .output}
 > {: .solution}
 {: .challenge}
 
@@ -364,9 +415,22 @@ Error in penguins %>% arrange(desc(island)): could not find function "%>%"
 > > 
 > > 
 > > ~~~
-> > Error in penguins %>% arrange(desc(flipper_length_mm)): could not find function "%>%"
+> > # A tibble: 344 × 8
+> >    species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+> >    <fct>   <fct>           <dbl>         <dbl>             <int>       <int>
+> >  1 Gentoo  Biscoe           54.3          15.7               231        5650
+> >  2 Gentoo  Biscoe           50            16.3               230        5700
+> >  3 Gentoo  Biscoe           59.6          17                 230        6050
+> >  4 Gentoo  Biscoe           49.8          16.8               230        5700
+> >  5 Gentoo  Biscoe           48.6          16                 230        5800
+> >  6 Gentoo  Biscoe           52.1          17                 230        5550
+> >  7 Gentoo  Biscoe           51.5          16.3               230        5500
+> >  8 Gentoo  Biscoe           55.1          16                 230        5850
+> >  9 Gentoo  Biscoe           49.5          16.2               229        5800
+> > 10 Gentoo  Biscoe           49.8          15.9               229        5950
+> > # … with 334 more rows, and 2 more variables: sex <fct>, year <int>
 > > ~~~
-> > {: .error}
+> > {: .output}
 > {: .solution}
 {: .challenge}
 
@@ -384,9 +448,22 @@ Error in penguins %>% arrange(desc(island)): could not find function "%>%"
 > > 
 > > 
 > > ~~~
-> > Error in penguins %>% arrange(island, desc(flipper_length_mm)): could not find function "%>%"
+> > # A tibble: 344 × 8
+> >    species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+> >    <fct>   <fct>           <dbl>         <dbl>             <int>       <int>
+> >  1 Gentoo  Biscoe           54.3          15.7               231        5650
+> >  2 Gentoo  Biscoe           50            16.3               230        5700
+> >  3 Gentoo  Biscoe           59.6          17                 230        6050
+> >  4 Gentoo  Biscoe           49.8          16.8               230        5700
+> >  5 Gentoo  Biscoe           48.6          16                 230        5800
+> >  6 Gentoo  Biscoe           52.1          17                 230        5550
+> >  7 Gentoo  Biscoe           51.5          16.3               230        5500
+> >  8 Gentoo  Biscoe           55.1          16                 230        5850
+> >  9 Gentoo  Biscoe           49.5          16.2               229        5800
+> > 10 Gentoo  Biscoe           49.8          15.9               229        5950
+> > # … with 334 more rows, and 2 more variables: sex <fct>, year <int>
 > > ~~~
-> > {: .error}
+> > {: .output}
 > {: .solution}
 {: .challenge}
 
@@ -407,9 +484,22 @@ penguins %>%
 
 
 ~~~
-Error in penguins %>% arrange(island) %>% select(where(is.numeric)): could not find function "%>%"
+# A tibble: 344 × 5
+   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g  year
+            <dbl>         <dbl>             <int>       <int> <int>
+ 1           37.8          18.3               174        3400  2007
+ 2           37.7          18.7               180        3600  2007
+ 3           35.9          19.2               189        3800  2007
+ 4           38.2          18.1               185        3950  2007
+ 5           38.8          17.2               180        3800  2007
+ 6           35.3          18.9               187        3800  2007
+ 7           40.6          18.6               183        3550  2007
+ 8           40.5          17.9               187        3200  2007
+ 9           37.9          18.6               172        3150  2007
+10           40.5          18.9               180        3950  2007
+# … with 334 more rows
 ~~~
-{: .error}
+{: .output}
 
 And we can continue that by looking at the data for only male penguins
 
@@ -424,7 +514,10 @@ penguins %>%
 
 
 ~~~
-Error in penguins %>% arrange(island) %>% select(island, where(is.numeric)) %>% : could not find function "%>%"
+Error in `filter()`:
+! Problem while computing `..1 = sex == "male"`.
+Caused by error:
+! object 'sex' not found
 ~~~
 {: .error}
 
@@ -456,9 +549,22 @@ The order in which you chain commands together matters. Since the pipe sends the
 > > 
 > > 
 > > ~~~
-> > Error in penguins %>% arrange(island) %>% select(sex, island, where(is.numeric)) %>% : could not find function "%>%"
+> > # A tibble: 168 × 7
+> >    sex   island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g  year
+> >    <fct> <fct>           <dbl>         <dbl>             <int>       <int> <int>
+> >  1 male  Biscoe           37.7          18.7               180        3600  2007
+> >  2 male  Biscoe           38.2          18.1               185        3950  2007
+> >  3 male  Biscoe           38.8          17.2               180        3800  2007
+> >  4 male  Biscoe           40.6          18.6               183        3550  2007
+> >  5 male  Biscoe           40.5          18.9               180        3950  2007
+> >  6 male  Biscoe           40.1          18.9               188        4300  2008
+> >  7 male  Biscoe           42            19.5               200        4050  2008
+> >  8 male  Biscoe           41.4          18.6               191        3700  2008
+> >  9 male  Biscoe           40.6          18.8               193        3800  2008
+> > 10 male  Biscoe           37.6          19.1               194        3750  2008
+> > # … with 158 more rows
 > > ~~~
-> > {: .error}
+> > {: .output}
 > > 
 > > 
 > > 
@@ -473,9 +579,22 @@ The order in which you chain commands together matters. Since the pipe sends the
 > > 
 > > 
 > > ~~~
-> > Error in penguins %>% filter(sex == "male") %>% arrange(island) %>% select(island, : could not find function "%>%"
+> > # A tibble: 168 × 6
+> >    island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g  year
+> >    <fct>           <dbl>         <dbl>             <int>       <int> <int>
+> >  1 Biscoe           37.7          18.7               180        3600  2007
+> >  2 Biscoe           38.2          18.1               185        3950  2007
+> >  3 Biscoe           38.8          17.2               180        3800  2007
+> >  4 Biscoe           40.6          18.6               183        3550  2007
+> >  5 Biscoe           40.5          18.9               180        3950  2007
+> >  6 Biscoe           40.1          18.9               188        4300  2008
+> >  7 Biscoe           42            19.5               200        4050  2008
+> >  8 Biscoe           41.4          18.6               191        3700  2008
+> >  9 Biscoe           40.6          18.8               193        3800  2008
+> > 10 Biscoe           37.6          19.1               194        3750  2008
+> > # … with 158 more rows
 > > ~~~
-> > {: .error}
+> > {: .output}
 > {: .solution}
 {: .challenge}
 
@@ -494,9 +613,82 @@ penguins %>%
 
 
 ~~~
-Error in penguins %>% filter(sex == "male") %>% ggplot(aes(x = year, y = bill_length_mm)): could not find function "%>%"
+`geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ~~~
-{: .error}
+{: .output}
+
+
+
+~~~
+Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+parametric, : pseudoinverse used at 2007
+~~~
+{: .warning}
+
+
+
+~~~
+Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+parametric, : neighborhood radius 2.01
+~~~
+{: .warning}
+
+
+
+~~~
+Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+parametric, : reciprocal condition number 5.2972e-16
+~~~
+{: .warning}
+
+
+
+~~~
+Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+parametric, : There are other near singularities as well. 4.0401
+~~~
+{: .warning}
+
+
+
+~~~
+Warning in predLoess(object$y, object$x, newx = if
+(is.null(newdata)) object$x else if (is.data.frame(newdata))
+as.matrix(model.frame(delete.response(terms(object)), : pseudoinverse used at
+2007
+~~~
+{: .warning}
+
+
+
+~~~
+Warning in predLoess(object$y, object$x, newx = if
+(is.null(newdata)) object$x else if (is.data.frame(newdata))
+as.matrix(model.frame(delete.response(terms(object)), : neighborhood radius 2.01
+~~~
+{: .warning}
+
+
+
+~~~
+Warning in predLoess(object$y, object$x, newx = if
+(is.null(newdata)) object$x else if (is.data.frame(newdata))
+as.matrix(model.frame(delete.response(terms(object)), : reciprocal condition
+number 5.2972e-16
+~~~
+{: .warning}
+
+
+
+~~~
+Warning in predLoess(object$y, object$x, newx = if
+(is.null(newdata)) object$x else if (is.data.frame(newdata))
+as.matrix(model.frame(delete.response(terms(object)), : There are other near
+singularities as well. 4.0401
+~~~
+{: .warning}
+
+<img src="../fig/rmd-04-unnamed-chunk-21-1.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" width="612" style="display: block; margin: auto;" />
 
 Now we only plot data from the male penguins, if we are particularly interested in those.
 This can be quite convenient if you have particularly large data and need to reduce it to get a proper idea of what the variables really look like.
@@ -515,12 +707,7 @@ This can be quite convenient if you have particularly large data and need to red
 > > ~~~
 > > {: .language-r}
 > > 
-> > 
-> > 
-> > ~~~
-> > Error in penguins %>% filter(island == "Dream") %>% ggplot(aes(x = species, : could not find function "%>%"
-> > ~~~
-> > {: .error}
+> > <img src="../fig/rmd-04-unnamed-chunk-22-1.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" width="612" style="display: block; margin: auto;" />
 > {: .solution}
 {: .challenge}
 

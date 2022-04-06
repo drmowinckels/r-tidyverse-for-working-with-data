@@ -57,48 +57,9 @@ We first need to make sure we have the tidyverse loaded and the penguins data se
 
 ~~~
 library(tidyverse)
-~~~
-{: .language-r}
-
-
-
-~~~
-── Attaching packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──
-~~~
-{: .output}
-
-
-
-~~~
-✔ ggplot2 3.3.5     ✔ purrr   0.3.4
-✔ tibble  3.1.6     ✔ dplyr   1.0.8
-✔ tidyr   1.2.0     ✔ stringr 1.4.0
-✔ readr   2.1.2     ✔ forcats 0.5.1
-~~~
-{: .output}
-
-
-
-~~~
-── Conflicts ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-~~~
-{: .output}
-
-
-
-~~~
 penguins <- read_csv("data/penguins.csv")
 ~~~
 {: .language-r}
-
-
-
-~~~
-Error: 'data/penguins.csv' does not exist in current working directory ('/Users/athanasm/workspace/conferences_workshops/swc/r-tidyverse-for-working-with-data/_episodes_rmd').
-~~~
-{: .error}
 
 To select data, we must first tell select which data set we are selecting from, and then give it our selection. Here, we are asking R to `select()` from the `penguins` data set the `island`, `species` and `sex` columns
 
@@ -111,9 +72,22 @@ select(penguins, island, species, sex)
 
 
 ~~~
-Error in select(penguins, island, species, sex): object 'penguins' not found
+# A tibble: 344 × 3
+   island    species sex   
+   <fct>     <fct>   <fct> 
+ 1 Torgersen Adelie  male  
+ 2 Torgersen Adelie  female
+ 3 Torgersen Adelie  female
+ 4 Torgersen Adelie  <NA>  
+ 5 Torgersen Adelie  female
+ 6 Torgersen Adelie  male  
+ 7 Torgersen Adelie  female
+ 8 Torgersen Adelie  male  
+ 9 Torgersen Adelie  <NA>  
+10 Torgersen Adelie  <NA>  
+# … with 334 more rows
 ~~~
-{: .error}
+{: .output}
 
 When we use `select()` we don't need to use quotations, we write in the names directly. We can also use the numeric indexes for the column, if we are 100% certain of the order of the columns:
 
@@ -126,9 +100,22 @@ select(penguins, 1:3, 6)
 
 
 ~~~
-Error in select(penguins, 1:3, 6): object 'penguins' not found
+# A tibble: 344 × 4
+   species island    bill_length_mm body_mass_g
+   <fct>   <fct>              <dbl>       <int>
+ 1 Adelie  Torgersen           39.1        3750
+ 2 Adelie  Torgersen           39.5        3800
+ 3 Adelie  Torgersen           40.3        3250
+ 4 Adelie  Torgersen           NA            NA
+ 5 Adelie  Torgersen           36.7        3450
+ 6 Adelie  Torgersen           39.3        3650
+ 7 Adelie  Torgersen           38.9        3625
+ 8 Adelie  Torgersen           39.2        4675
+ 9 Adelie  Torgersen           34.1        3475
+10 Adelie  Torgersen           42          4250
+# … with 334 more rows
 ~~~
-{: .error}
+{: .output}
 
 In some cases, we want to remove columns, and not necessarily state all columns we want to keep. 
 Select also allows for this by adding a minus (`-`)  sign in front of the column name you don't want.
@@ -142,9 +129,22 @@ select(penguins, -bill_length_mm, -bill_depth_mm)
 
 
 ~~~
-Error in select(penguins, -bill_length_mm, -bill_depth_mm): object 'penguins' not found
+# A tibble: 344 × 6
+   species island    flipper_length_mm body_mass_g sex     year
+   <fct>   <fct>                 <int>       <int> <fct>  <int>
+ 1 Adelie  Torgersen               181        3750 male    2007
+ 2 Adelie  Torgersen               186        3800 female  2007
+ 3 Adelie  Torgersen               195        3250 female  2007
+ 4 Adelie  Torgersen                NA          NA <NA>    2007
+ 5 Adelie  Torgersen               193        3450 female  2007
+ 6 Adelie  Torgersen               190        3650 male    2007
+ 7 Adelie  Torgersen               181        3625 female  2007
+ 8 Adelie  Torgersen               195        4675 male    2007
+ 9 Adelie  Torgersen               193        3475 <NA>    2007
+10 Adelie  Torgersen               190        4250 <NA>    2007
+# … with 334 more rows
 ~~~
-{: .error}
+{: .output}
 
 > ## Challenge 1
 > Select the columns sex, year, and species from the penguins dataset.
@@ -159,9 +159,22 @@ Error in select(penguins, -bill_length_mm, -bill_depth_mm): object 'penguins' no
 > > 
 > > 
 > > ~~~
-> > Error in select(penguins, sex, year, species): object 'penguins' not found
+> > # A tibble: 344 × 3
+> >    sex     year species
+> >    <fct>  <int> <fct>  
+> >  1 male    2007 Adelie 
+> >  2 female  2007 Adelie 
+> >  3 female  2007 Adelie 
+> >  4 <NA>    2007 Adelie 
+> >  5 female  2007 Adelie 
+> >  6 male    2007 Adelie 
+> >  7 female  2007 Adelie 
+> >  8 male    2007 Adelie 
+> >  9 <NA>    2007 Adelie 
+> > 10 <NA>    2007 Adelie 
+> > # … with 334 more rows
 > > ~~~
-> > {: .error}
+> > {: .output}
 > {: .solution}
 {: .challenge}
 
@@ -178,9 +191,22 @@ Error in select(penguins, -bill_length_mm, -bill_depth_mm): object 'penguins' no
 > > 
 > > 
 > > ~~~
-> > Error in select(penguins, species, sex, year): object 'penguins' not found
+> > # A tibble: 344 × 3
+> >    species sex     year
+> >    <fct>   <fct>  <int>
+> >  1 Adelie  male    2007
+> >  2 Adelie  female  2007
+> >  3 Adelie  female  2007
+> >  4 Adelie  <NA>    2007
+> >  5 Adelie  female  2007
+> >  6 Adelie  male    2007
+> >  7 Adelie  female  2007
+> >  8 Adelie  male    2007
+> >  9 Adelie  <NA>    2007
+> > 10 Adelie  <NA>    2007
+> > # … with 334 more rows
 > > ~~~
-> > {: .error}
+> > {: .output}
 > > select does not only subset columns, but it can also re-arrange them. The columns appear in the order your selection is specified.
 > {: .solution}
 {: .challenge}
@@ -204,9 +230,22 @@ select(penguins, ends_with("mm"))
 
 
 ~~~
-Error in select(penguins, ends_with("mm")): object 'penguins' not found
+# A tibble: 344 × 3
+   bill_length_mm bill_depth_mm flipper_length_mm
+            <dbl>         <dbl>             <int>
+ 1           39.1          18.7               181
+ 2           39.5          17.4               186
+ 3           40.3          18                 195
+ 4           NA            NA                  NA
+ 5           36.7          19.3               193
+ 6           39.3          20.6               190
+ 7           38.9          17.8               181
+ 8           39.2          19.6               195
+ 9           34.1          18.1               193
+10           42            20.2               190
+# … with 334 more rows
 ~~~
-{: .error}
+{: .output}
 
 So convenient! There are several other tidy-selectors you can choose, [which you can find here](https://dplyr.tidyverse.org/reference/select.html), but often people resort to three specific ones:
 
@@ -227,9 +266,22 @@ select(penguins, starts_with("bill"))
 
 
 ~~~
-Error in select(penguins, starts_with("bill")): object 'penguins' not found
+# A tibble: 344 × 2
+   bill_length_mm bill_depth_mm
+            <dbl>         <dbl>
+ 1           39.1          18.7
+ 2           39.5          17.4
+ 3           40.3          18  
+ 4           NA            NA  
+ 5           36.7          19.3
+ 6           39.3          20.6
+ 7           38.9          17.8
+ 8           39.2          19.6
+ 9           34.1          18.1
+10           42            20.2
+# … with 334 more rows
 ~~~
-{: .error}
+{: .output}
 
 The tidy selector can be combined with each other and other selectors. So you can build exactly the data you want!
 
@@ -242,9 +294,22 @@ select(penguins, island, species, year, starts_with("bill"))
 
 
 ~~~
-Error in select(penguins, island, species, year, starts_with("bill")): object 'penguins' not found
+# A tibble: 344 × 5
+   island    species  year bill_length_mm bill_depth_mm
+   <fct>     <fct>   <int>          <dbl>         <dbl>
+ 1 Torgersen Adelie   2007           39.1          18.7
+ 2 Torgersen Adelie   2007           39.5          17.4
+ 3 Torgersen Adelie   2007           40.3          18  
+ 4 Torgersen Adelie   2007           NA            NA  
+ 5 Torgersen Adelie   2007           36.7          19.3
+ 6 Torgersen Adelie   2007           39.3          20.6
+ 7 Torgersen Adelie   2007           38.9          17.8
+ 8 Torgersen Adelie   2007           39.2          19.6
+ 9 Torgersen Adelie   2007           34.1          18.1
+10 Torgersen Adelie   2007           42            20.2
+# … with 334 more rows
 ~~~
-{: .error}
+{: .output}
 
 > ## Challenge 3
 > Select all columns containing an underscore ("_").
@@ -259,9 +324,22 @@ Error in select(penguins, island, species, year, starts_with("bill")): object 'p
 > > 
 > > 
 > > ~~~
-> > Error in select(penguins, contains("_")): object 'penguins' not found
+> > # A tibble: 344 × 4
+> >    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+> >             <dbl>         <dbl>             <int>       <int>
+> >  1           39.1          18.7               181        3750
+> >  2           39.5          17.4               186        3800
+> >  3           40.3          18                 195        3250
+> >  4           NA            NA                  NA          NA
+> >  5           36.7          19.3               193        3450
+> >  6           39.3          20.6               190        3650
+> >  7           38.9          17.8               181        3625
+> >  8           39.2          19.6               195        4675
+> >  9           34.1          18.1               193        3475
+> > 10           42            20.2               190        4250
+> > # … with 334 more rows
 > > ~~~
-> > {: .error}
+> > {: .output}
 > {: .solution}
 {: .challenge}
 
@@ -278,9 +356,22 @@ Error in select(penguins, island, species, year, starts_with("bill")): object 'p
 > > 
 > > 
 > > ~~~
-> > Error in select(penguins, species, sex, ends_with("mm")): object 'penguins' not found
+> > # A tibble: 344 × 5
+> >    species sex    bill_length_mm bill_depth_mm flipper_length_mm
+> >    <fct>   <fct>           <dbl>         <dbl>             <int>
+> >  1 Adelie  male             39.1          18.7               181
+> >  2 Adelie  female           39.5          17.4               186
+> >  3 Adelie  female           40.3          18                 195
+> >  4 Adelie  <NA>             NA            NA                  NA
+> >  5 Adelie  female           36.7          19.3               193
+> >  6 Adelie  male             39.3          20.6               190
+> >  7 Adelie  female           38.9          17.8               181
+> >  8 Adelie  male             39.2          19.6               195
+> >  9 Adelie  <NA>             34.1          18.1               193
+> > 10 Adelie  <NA>             42            20.2               190
+> > # … with 334 more rows
 > > ~~~
-> > {: .error}
+> > {: .output}
 > {: .solution}
 {: .challenge}
 
@@ -297,9 +388,22 @@ Error in select(penguins, island, species, year, starts_with("bill")): object 'p
 > > 
 > > 
 > > ~~~
-> > Error in select(penguins, -starts_with("bill")): object 'penguins' not found
+> > # A tibble: 344 × 6
+> >    species island    flipper_length_mm body_mass_g sex     year
+> >    <fct>   <fct>                 <int>       <int> <fct>  <int>
+> >  1 Adelie  Torgersen               181        3750 male    2007
+> >  2 Adelie  Torgersen               186        3800 female  2007
+> >  3 Adelie  Torgersen               195        3250 female  2007
+> >  4 Adelie  Torgersen                NA          NA <NA>    2007
+> >  5 Adelie  Torgersen               193        3450 female  2007
+> >  6 Adelie  Torgersen               190        3650 male    2007
+> >  7 Adelie  Torgersen               181        3625 female  2007
+> >  8 Adelie  Torgersen               195        4675 male    2007
+> >  9 Adelie  Torgersen               193        3475 <NA>    2007
+> > 10 Adelie  Torgersen               190        4250 <NA>    2007
+> > # … with 334 more rows
 > > ~~~
-> > {: .error}
+> > {: .output}
 > {: .solution}
 {: .challenge}
 
@@ -318,9 +422,22 @@ select(penguins, where(is.numeric))
 
 
 ~~~
-Error in select(penguins, where(is.numeric)): object 'penguins' not found
+# A tibble: 344 × 5
+   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g  year
+            <dbl>         <dbl>             <int>       <int> <int>
+ 1           39.1          18.7               181        3750  2007
+ 2           39.5          17.4               186        3800  2007
+ 3           40.3          18                 195        3250  2007
+ 4           NA            NA                  NA          NA  2007
+ 5           36.7          19.3               193        3450  2007
+ 6           39.3          20.6               190        3650  2007
+ 7           38.9          17.8               181        3625  2007
+ 8           39.2          19.6               195        4675  2007
+ 9           34.1          18.1               193        3475  2007
+10           42            20.2               190        4250  2007
+# … with 334 more rows
 ~~~
-{: .error}
+{: .output}
 
 Magic! Let's break that down. 
 `is.numeric()` is a function in R that checks if a vector is numeric. If the vector is numeric, it returns `TRUE` if not it returns `FALSE`.
@@ -362,9 +479,22 @@ penguins
 
 
 ~~~
-Error in eval(expr, envir, enclos): object 'penguins' not found
+# A tibble: 344 × 8
+   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+   <fct>   <fct>              <dbl>         <dbl>             <int>       <int>
+ 1 Adelie  Torgersen           39.1          18.7               181        3750
+ 2 Adelie  Torgersen           39.5          17.4               186        3800
+ 3 Adelie  Torgersen           40.3          18                 195        3250
+ 4 Adelie  Torgersen           NA            NA                  NA          NA
+ 5 Adelie  Torgersen           36.7          19.3               193        3450
+ 6 Adelie  Torgersen           39.3          20.6               190        3650
+ 7 Adelie  Torgersen           38.9          17.8               181        3625
+ 8 Adelie  Torgersen           39.2          19.6               195        4675
+ 9 Adelie  Torgersen           34.1          18.1               193        3475
+10 Adelie  Torgersen           42            20.2               190        4250
+# … with 334 more rows, and 2 more variables: sex <fct>, year <int>
 ~~~
-{: .error}
+{: .output}
 
 The penguins data is stored as a `tibble`, which is a special kind of data set in R that gives a nice print out of the data.
 Notice, right below the column name, there is some information in `<>` marks. This tells us the class of the columns. 
@@ -381,9 +511,22 @@ select(penguins, where(is.numeric))
 
 
 ~~~
-Error in select(penguins, where(is.numeric)): object 'penguins' not found
+# A tibble: 344 × 5
+   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g  year
+            <dbl>         <dbl>             <int>       <int> <int>
+ 1           39.1          18.7               181        3750  2007
+ 2           39.5          17.4               186        3800  2007
+ 3           40.3          18                 195        3250  2007
+ 4           NA            NA                  NA          NA  2007
+ 5           36.7          19.3               193        3450  2007
+ 6           39.3          20.6               190        3650  2007
+ 7           38.9          17.8               181        3625  2007
+ 8           39.2          19.6               195        4675  2007
+ 9           34.1          18.1               193        3475  2007
+10           42            20.2               190        4250  2007
+# … with 334 more rows
 ~~~
-{: .error}
+{: .output}
 
 
 > ## Challenge 6
@@ -399,9 +542,22 @@ Error in select(penguins, where(is.numeric)): object 'penguins' not found
 > > 
 > > 
 > > ~~~
-> > Error in select(penguins, where(is.factor)): object 'penguins' not found
+> > # A tibble: 344 × 3
+> >    species island    sex   
+> >    <fct>   <fct>     <fct> 
+> >  1 Adelie  Torgersen male  
+> >  2 Adelie  Torgersen female
+> >  3 Adelie  Torgersen female
+> >  4 Adelie  Torgersen <NA>  
+> >  5 Adelie  Torgersen female
+> >  6 Adelie  Torgersen male  
+> >  7 Adelie  Torgersen female
+> >  8 Adelie  Torgersen male  
+> >  9 Adelie  Torgersen <NA>  
+> > 10 Adelie  Torgersen <NA>  
+> > # … with 334 more rows
 > > ~~~
-> > {: .error}
+> > {: .output}
 > {: .solution}
 {: .challenge}
 
@@ -418,9 +574,22 @@ Error in select(penguins, where(is.numeric)): object 'penguins' not found
 > > 
 > > 
 > > ~~~
-> > Error in select(penguins, island, species, where(is.numeric)): object 'penguins' not found
+> > # A tibble: 344 × 7
+> >    island    species bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+> >    <fct>     <fct>            <dbl>         <dbl>             <int>       <int>
+> >  1 Torgersen Adelie            39.1          18.7               181        3750
+> >  2 Torgersen Adelie            39.5          17.4               186        3800
+> >  3 Torgersen Adelie            40.3          18                 195        3250
+> >  4 Torgersen Adelie            NA            NA                  NA          NA
+> >  5 Torgersen Adelie            36.7          19.3               193        3450
+> >  6 Torgersen Adelie            39.3          20.6               190        3650
+> >  7 Torgersen Adelie            38.9          17.8               181        3625
+> >  8 Torgersen Adelie            39.2          19.6               195        4675
+> >  9 Torgersen Adelie            34.1          18.1               193        3475
+> > 10 Torgersen Adelie            42            20.2               190        4250
+> > # … with 334 more rows, and 1 more variable: year <int>
 > > ~~~
-> > {: .error}
+> > {: .output}
 > {: .solution}
 {: .challenge}
 
@@ -452,9 +621,21 @@ filter(penguins, body_mass_g < 3000)
 
 
 ~~~
-Error in filter(penguins, body_mass_g < 3000): object 'penguins' not found
+# A tibble: 9 × 8
+  species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+  <fct>   <fct>           <dbl>         <dbl>            <int>       <int> <fct>
+1 Adelie  Dream            37.5          18.9              179        2975 <NA> 
+2 Adelie  Biscoe           34.5          18.1              187        2900 fema…
+3 Adelie  Biscoe           36.5          16.6              181        2850 fema…
+4 Adelie  Biscoe           36.4          17.1              184        2850 fema…
+5 Adelie  Dream            33.1          16.1              178        2900 fema…
+6 Adelie  Biscoe           37.9          18.6              193        2925 fema…
+7 Adelie  Torge…           38.6          17                188        2900 fema…
+8 Chinst… Dream            43.2          16.6              187        2900 fema…
+9 Chinst… Dream            46.9          16.6              192        2700 fema…
+# … with 1 more variable: year <int>
 ~~~
-{: .error}
+{: .output}
 
 Here, we've filtered so that we only have observations where the body mass was less than 3 kilos. 
 We can also filter for specific values, but beware! you must use double equals (`==`) for comparisons, as single equals (`=`) are for argument names in functions. 
@@ -468,9 +649,16 @@ filter(penguins, body_mass_g == 2900)
 
 
 ~~~
-Error in filter(penguins, body_mass_g == 2900): object 'penguins' not found
+# A tibble: 4 × 8
+  species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+  <fct>   <fct>           <dbl>         <dbl>            <int>       <int> <fct>
+1 Adelie  Biscoe           34.5          18.1              187        2900 fema…
+2 Adelie  Dream            33.1          16.1              178        2900 fema…
+3 Adelie  Torge…           38.6          17                188        2900 fema…
+4 Chinst… Dream            43.2          16.6              187        2900 fema…
+# … with 1 more variable: year <int>
 ~~~
-{: .error}
+{: .output}
 
 What is happening, is that R will check if the values in `body_mass_g` are the same as 2900 (`TRUE`) or not (`FALSE`), and will do this for every row in the data set. Then at the end, it will discard all those that are `FALSE`, and keep those that are `TRUE`.
 
@@ -487,9 +675,22 @@ What is happening, is that R will check if the values in `body_mass_g` are the s
 > > 
 > > 
 > > ~~~
-> > Error in filter(penguins, island == "Dream"): object 'penguins' not found
+> > # A tibble: 124 × 8
+> >    species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+> >    <fct>   <fct>           <dbl>         <dbl>             <int>       <int>
+> >  1 Adelie  Dream            39.5          16.7               178        3250
+> >  2 Adelie  Dream            37.2          18.1               178        3900
+> >  3 Adelie  Dream            39.5          17.8               188        3300
+> >  4 Adelie  Dream            40.9          18.9               184        3900
+> >  5 Adelie  Dream            36.4          17                 195        3325
+> >  6 Adelie  Dream            39.2          21.1               196        4150
+> >  7 Adelie  Dream            38.8          20                 190        3950
+> >  8 Adelie  Dream            42.2          18.5               180        3550
+> >  9 Adelie  Dream            37.6          19.3               181        3300
+> > 10 Adelie  Dream            39.8          19.1               184        4650
+> > # … with 114 more rows, and 2 more variables: sex <fct>, year <int>
 > > ~~~
-> > {: .error}
+> > {: .output}
 > {: .solution}
 {: .challenge}
 
@@ -506,9 +707,22 @@ What is happening, is that R will check if the values in `body_mass_g` are the s
 > > 
 > > 
 > > ~~~
-> > Error in filter(penguins, year >= 2008): object 'penguins' not found
+> > # A tibble: 234 × 8
+> >    species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+> >    <fct>   <fct>           <dbl>         <dbl>             <int>       <int>
+> >  1 Adelie  Biscoe           39.6          17.7               186        3500
+> >  2 Adelie  Biscoe           40.1          18.9               188        4300
+> >  3 Adelie  Biscoe           35            17.9               190        3450
+> >  4 Adelie  Biscoe           42            19.5               200        4050
+> >  5 Adelie  Biscoe           34.5          18.1               187        2900
+> >  6 Adelie  Biscoe           41.4          18.6               191        3700
+> >  7 Adelie  Biscoe           39            17.5               186        3550
+> >  8 Adelie  Biscoe           40.6          18.8               193        3800
+> >  9 Adelie  Biscoe           36.5          16.6               181        2850
+> > 10 Adelie  Biscoe           37.6          19.1               194        3750
+> > # … with 224 more rows, and 2 more variables: sex <fct>, year <int>
 > > ~~~
-> > {: .error}
+> > {: .output}
 > {: .solution}
 {: .challenge}
 
@@ -528,9 +742,14 @@ filter(penguins,
 
 
 ~~~
-Error in filter(penguins, species == "Chinstrap", body_mass_g < 3000): object 'penguins' not found
+# A tibble: 2 × 8
+  species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+  <fct>   <fct>           <dbl>         <dbl>            <int>       <int> <fct>
+1 Chinst… Dream            43.2          16.6              187        2900 fema…
+2 Chinst… Dream            46.9          16.6              192        2700 fema…
+# … with 1 more variable: year <int>
 ~~~
-{: .error}
+{: .output}
 
 You can also use the `&` sign, which in R is the comparison character for 'and', like `==` is for 'equals'.
 
@@ -544,9 +763,14 @@ filter(penguins,
 
 
 ~~~
-Error in filter(penguins, species == "Chinstrap" & body_mass_g < 3000): object 'penguins' not found
+# A tibble: 2 × 8
+  species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+  <fct>   <fct>           <dbl>         <dbl>            <int>       <int> <fct>
+1 Chinst… Dream            43.2          16.6              187        2900 fema…
+2 Chinst… Dream            46.9          16.6              192        2700 fema…
+# … with 1 more variable: year <int>
 ~~~
-{: .error}
+{: .output}
 
 Here we are filtering the penguins data set keeping only the species "Chinstrap" **and** those below 3.5 kilos.
 And we can keep going!
@@ -563,9 +787,12 @@ filter(penguins,
 
 
 ~~~
-Error in filter(penguins, species == "Chinstrap", body_mass_g < 3000, : object 'penguins' not found
+# A tibble: 0 × 8
+# … with 8 variables: species <fct>, island <fct>, bill_length_mm <dbl>,
+#   bill_depth_mm <dbl>, flipper_length_mm <int>, body_mass_g <int>, sex <fct>,
+#   year <int>
 ~~~
-{: .error}
+{: .output}
 
 > ## Challenge 10
 > Filter the data so you only have observations after 2008, and from "Biscoe" island
@@ -582,9 +809,22 @@ Error in filter(penguins, species == "Chinstrap", body_mass_g < 3000, : object '
 > > 
 > > 
 > > ~~~
-> > Error in filter(penguins, year >= 2008, island == "Biscoe"): object 'penguins' not found
+> > # A tibble: 124 × 8
+> >    species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+> >    <fct>   <fct>           <dbl>         <dbl>             <int>       <int>
+> >  1 Adelie  Biscoe           39.6          17.7               186        3500
+> >  2 Adelie  Biscoe           40.1          18.9               188        4300
+> >  3 Adelie  Biscoe           35            17.9               190        3450
+> >  4 Adelie  Biscoe           42            19.5               200        4050
+> >  5 Adelie  Biscoe           34.5          18.1               187        2900
+> >  6 Adelie  Biscoe           41.4          18.6               191        3700
+> >  7 Adelie  Biscoe           39            17.5               186        3550
+> >  8 Adelie  Biscoe           40.6          18.8               193        3800
+> >  9 Adelie  Biscoe           36.5          16.6               181        2850
+> > 10 Adelie  Biscoe           37.6          19.1               194        3750
+> > # … with 114 more rows, and 2 more variables: sex <fct>, year <int>
 > > ~~~
-> > {: .error}
+> > {: .output}
 > {: .solution}
 {: .challenge}
 
@@ -603,9 +843,22 @@ Error in filter(penguins, species == "Chinstrap", body_mass_g < 3000, : object '
 > > 
 > > 
 > > ~~~
-> > Error in filter(penguins, sex == "male", species == "Chinstrap"): object 'penguins' not found
+> > # A tibble: 34 × 8
+> >    species   island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+> >    <fct>     <fct>           <dbl>         <dbl>             <int>       <int>
+> >  1 Chinstrap Dream            50            19.5               196        3900
+> >  2 Chinstrap Dream            51.3          19.2               193        3650
+> >  3 Chinstrap Dream            52.7          19.8               197        3725
+> >  4 Chinstrap Dream            51.3          18.2               197        3750
+> >  5 Chinstrap Dream            51.3          19.9               198        3700
+> >  6 Chinstrap Dream            51.7          20.3               194        3775
+> >  7 Chinstrap Dream            52            18.1               201        4050
+> >  8 Chinstrap Dream            50.5          19.6               201        4050
+> >  9 Chinstrap Dream            50.3          20                 197        3300
+> > 10 Chinstrap Dream            49.2          18.2               195        4400
+> > # … with 24 more rows, and 2 more variables: sex <fct>, year <int>
 > > ~~~
-> > {: .error}
+> > {: .output}
 > {: .solution}
 {: .challenge}
 
@@ -624,9 +877,22 @@ filter(penguins,
 
 
 ~~~
-Error in filter(penguins, species == "Chinstrap" | body_mass_g < 3000): object 'penguins' not found
+# A tibble: 75 × 8
+   species   island    bill_length_mm bill_depth_mm flipper_length_… body_mass_g
+   <fct>     <fct>              <dbl>         <dbl>            <int>       <int>
+ 1 Adelie    Dream               37.5          18.9              179        2975
+ 2 Adelie    Biscoe              34.5          18.1              187        2900
+ 3 Adelie    Biscoe              36.5          16.6              181        2850
+ 4 Adelie    Biscoe              36.4          17.1              184        2850
+ 5 Adelie    Dream               33.1          16.1              178        2900
+ 6 Adelie    Biscoe              37.9          18.6              193        2925
+ 7 Adelie    Torgersen           38.6          17                188        2900
+ 8 Chinstrap Dream               46.5          17.9              192        3500
+ 9 Chinstrap Dream               50            19.5              196        3900
+10 Chinstrap Dream               51.3          19.2              193        3650
+# … with 65 more rows, and 2 more variables: sex <fct>, year <int>
 ~~~
-{: .error}
+{: .output}
 
 This now gives us both all chinstrap penguins, and the smallest Adelie penguins!
 By combining AND and OR statements this way, we can slowly create the filtering we are after.
@@ -646,9 +912,22 @@ By combining AND and OR statements this way, we can slowly create the filtering 
 > > 
 > > 
 > > ~~~
-> > Error in filter(penguins, sex == "male" | species == "Chinstrap"): object 'penguins' not found
+> > # A tibble: 202 × 8
+> >    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+> >    <fct>   <fct>              <dbl>         <dbl>             <int>       <int>
+> >  1 Adelie  Torgersen           39.1          18.7               181        3750
+> >  2 Adelie  Torgersen           39.3          20.6               190        3650
+> >  3 Adelie  Torgersen           39.2          19.6               195        4675
+> >  4 Adelie  Torgersen           38.6          21.2               191        3800
+> >  5 Adelie  Torgersen           34.6          21.1               198        4400
+> >  6 Adelie  Torgersen           42.5          20.7               197        4500
+> >  7 Adelie  Torgersen           46            21.5               194        4200
+> >  8 Adelie  Biscoe              37.7          18.7               180        3600
+> >  9 Adelie  Biscoe              38.2          18.1               185        3950
+> > 10 Adelie  Biscoe              38.8          17.2               180        3800
+> > # … with 192 more rows, and 2 more variables: sex <fct>, year <int>
 > > ~~~
-> > {: .error}
+> > {: .output}
 > {: .solution}
 {: .challenge}
 

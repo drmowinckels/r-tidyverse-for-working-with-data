@@ -38,21 +38,6 @@ penguins <- read.csv("data/penguins.csv")
 ~~~
 {: .language-r}
 
-
-
-~~~
-Warning in file(file, "rt"): cannot open file 'data/penguins.csv': No such file
-or directory
-~~~
-{: .warning}
-
-
-
-~~~
-Error in file(file, "rt"): cannot open the connection
-~~~
-{: .error}
-
 This is our first bit of R code to "assign" data to an object in our "R environment".
 The R environment can be seen in the upper right hand corner, and it lists everything R has access to at the moment.
 You should see an object called "penguins", which is a Dataset with 344 observations and 8 variables.
@@ -136,9 +121,11 @@ ggplot(data = penguins) +
 
 
 ~~~
-Error in ggplot(data = penguins): object 'penguins' not found
+Warning: Removed 2 rows containing missing values (geom_point).
 ~~~
-{: .error}
+{: .warning}
+
+<img src="../fig/rmd-02-unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" width="612" style="display: block; margin: auto;" />
 
 Note that we split the function into several lines.
 In R, any function has a name and is followed by parentheses. Inside the parentheses we place any information the function needs to run.
@@ -170,9 +157,11 @@ The plus sign indicates that the ggplot is not over yet and that the next line s
 > > 
 > > 
 > > ~~~
-> > Error in ggplot(data = penguins): object 'penguins' not found
+> > Warning: Removed 2 rows containing missing values (geom_point).
 > > ~~~
-> > {: .error}
+> > {: .warning}
+> > 
+> > <img src="../fig/rmd-02-unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="612" style="display: block; margin: auto;" />
 > {: .solution}
 {: .challenge}
 
@@ -193,9 +182,11 @@ The plus sign indicates that the ggplot is not over yet and that the next line s
 > > 
 > > 
 > > ~~~
-> > Error in ggplot(data = penguins): object 'penguins' not found
+> > Warning: Removed 2 rows containing missing values (geom_point).
 > > ~~~
-> > {: .error}
+> > {: .warning}
+> > 
+> > <img src="../fig/rmd-02-unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" width="612" style="display: block; margin: auto;" />
 > {: .solution}
 {: .challenge}
 
@@ -220,9 +211,11 @@ ggplot(data = penguins) +
 
 
 ~~~
-Error in ggplot(data = penguins): object 'penguins' not found
+Warning: Removed 2 rows containing missing values (geom_point).
 ~~~
-{: .error}
+{: .warning}
+
+<img src="../fig/rmd-02-unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="612" style="display: block; margin: auto;" />
 
 > ## Challenge 2
 > What will happen if you switch colour to also be by year? Is the graph still useful? Why or why not? What is the difference in the plot between when you colour by island and when you colour by year?
@@ -242,9 +235,11 @@ Error in ggplot(data = penguins): object 'penguins' not found
 > > 
 > > 
 > > ~~~
-> > Error in ggplot(data = penguins): object 'penguins' not found
+> > Warning: Removed 2 rows containing missing values (geom_point).
 > > ~~~
-> > {: .error}
+> > {: .warning}
+> > 
+> > <img src="../fig/rmd-02-unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" width="612" style="display: block; margin: auto;" />
 > > Island is a categorical variable, in R we call it a factor. The colours get tagged with their factor in the legend, so we can interpret which colour belongs to which factor. `year` is a numerical variable, so the colour becomes a gradient colour bar, rather than showing fewer distinctly different colours. ggplot treats numerical and factors different in this way precisely.
 > {: .solution}
 {: .challenge}
@@ -267,9 +262,11 @@ ggplot(data = penguins) +
 
 
 ~~~
-Error in ggplot(data = penguins): object 'penguins' not found
+Warning: Removed 2 rows containing missing values (geom_point).
 ~~~
-{: .error}
+{: .warning}
+
+<img src="../fig/rmd-02-unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" width="612" style="display: block; margin: auto;" />
 
 It might be even better to try another type of aesthetic, like shape, for categorical data like species.
 
@@ -288,9 +285,11 @@ ggplot(data = penguins) +
 
 
 ~~~
-Error in ggplot(data = penguins): object 'penguins' not found
+Warning: Removed 2 rows containing missing values (geom_point).
 ~~~
-{: .error}
+{: .warning}
+
+<img src="../fig/rmd-02-unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" width="612" style="display: block; margin: auto;" />
 
 Playing around with different aesthetic mappings until you find something that really makes the data "pop" is a good idea. A plot is rarely made nice on the first try, we all try different configurations until we find the one we like.
 
@@ -314,9 +313,11 @@ ggplot(data = penguins) +
 
 
 ~~~
-Error in ggplot(data = penguins): object 'penguins' not found
+Warning: Removed 2 rows containing missing values (geom_point).
 ~~~
-{: .error}
+{: .warning}
+
+<img src="../fig/rmd-02-unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" width="612" style="display: block; margin: auto;" />
 
 Once more, observe that the colour is now not mapped to any particular variable from the `penguins` dataset and applies equally to all data points, therefore it is outside the `mapping` argument and is not wrapped into `aes()` function. Note that set colours are supplied as characters (in quotes). 
 
@@ -339,9 +340,11 @@ Once more, observe that the colour is now not mapped to any particular variable 
 > > 
 > > 
 > > ~~~
-> > Error in ggplot(data = penguins): object 'penguins' not found
+> > Warning: Removed 2 rows containing missing values (geom_point).
 > > ~~~
-> > {: .error}
+> > {: .warning}
+> > 
+> > <img src="../fig/rmd-02-unnamed-chunk-12-1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" width="612" style="display: block; margin: auto;" />
 > > 
 > {: .solution}
 {: .challenge}
@@ -363,9 +366,11 @@ Once more, observe that the colour is now not mapped to any particular variable 
 > > 
 > > 
 > > ~~~
-> > Error in ggplot(data = penguins): object 'penguins' not found
+> > Warning: Removed 2 rows containing missing values (geom_point).
 > > ~~~
-> > {: .error}
+> > {: .warning}
+> > 
+> > <img src="../fig/rmd-02-unnamed-chunk-13-1.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" width="612" style="display: block; margin: auto;" />
 > > Controlling the transparency can be a great way to "mute" the visual effect of certain data, while still keeping it visible. Its a great tool when you have many data points or if you have several geoms together, like we will see soon.
 > {: .solution}
 {: .challenge}
@@ -391,9 +396,11 @@ ggplot(data = penguins) +
 
 
 ~~~
-Error in ggplot(data = penguins): object 'penguins' not found
+Warning: Removed 2 rows containing non-finite values (stat_boxplot).
 ~~~
-{: .error}
+{: .warning}
+
+<img src="../fig/rmd-02-unnamed-chunk-14-1.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" width="612" style="display: block; margin: auto;" />
 
 Layers can be added on top of each other. In the following graph we will place the boxplots **over** jittered points to see the distribution of outliers more clearly. We can map two aesthetic properties to the same variable. Here we will also use different colour for each island.
 
@@ -415,9 +422,18 @@ ggplot(data = penguins) +
 
 
 ~~~
-Error in ggplot(data = penguins): object 'penguins' not found
+Warning: Removed 2 rows containing non-finite values (stat_boxplot).
 ~~~
-{: .error}
+{: .warning}
+
+
+
+~~~
+Warning: Removed 2 rows containing missing values (geom_point).
+~~~
+{: .warning}
+
+<img src="../fig/rmd-02-unnamed-chunk-15-1.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="612" style="display: block; margin: auto;" />
 
 Now, this was slightly inefficient due to duplication of code - we had to specify the same mappings for two layers. To avoid it, you can move common arguments of `geom_` functions to the main `ggplot()` function. In this case every layer will "inherit" the same arguments, specified in the "parent" function.
 
@@ -435,9 +451,18 @@ ggplot(data = penguins,
 
 
 ~~~
-Error in ggplot(data = penguins, mapping = aes(x = island, y = bill_length_mm)): object 'penguins' not found
+Warning: Removed 2 rows containing non-finite values (stat_boxplot).
 ~~~
-{: .error}
+{: .warning}
+
+
+
+~~~
+Warning: Removed 2 rows containing missing values (geom_point).
+~~~
+{: .warning}
+
+<img src="../fig/rmd-02-unnamed-chunk-16-1.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" width="612" style="display: block; margin: auto;" />
 
 You can still add layer-specific mappings or other arguments by specifying them within individual geoms. Here, we've set the transparency of the boxplot to .6, so we can see the points behind it, and also mapped colour to island in the points. We would recommend building each layer separately and then moving common arguments up to the "parent" function.
 
@@ -457,9 +482,25 @@ ggplot(data = penguins,
 
 
 ~~~
-Error in ggplot(data = penguins, mapping = aes(x = bill_depth_mm, y = bill_length_mm)): object 'penguins' not found
+`geom_smooth()` using formula 'y ~ x'
 ~~~
-{: .error}
+{: .output}
+
+
+
+~~~
+Warning: Removed 2 rows containing non-finite values (stat_smooth).
+~~~
+{: .warning}
+
+
+
+~~~
+Warning: Removed 2 rows containing missing values (geom_point).
+~~~
+{: .warning}
+
+<img src="../fig/rmd-02-unnamed-chunk-17-1.png" title="plot of chunk unnamed-chunk-17" alt="plot of chunk unnamed-chunk-17" width="612" style="display: block; margin: auto;" />
 
 > ## Challenge 5
 > Modify the plot so the the points are coloured by island, but there is a single regression line.
@@ -479,9 +520,25 @@ Error in ggplot(data = penguins, mapping = aes(x = bill_depth_mm, y = bill_lengt
 > > 
 > > 
 > > ~~~
-> > Error in ggplot(data = penguins, mapping = aes(x = bill_depth_mm, y = bill_length_mm)): object 'penguins' not found
+> > `geom_smooth()` using formula 'y ~ x'
 > > ~~~
-> > {: .error}
+> > {: .output}
+> > 
+> > 
+> > 
+> > ~~~
+> > Warning: Removed 2 rows containing non-finite values (stat_smooth).
+> > ~~~
+> > {: .warning}
+> > 
+> > 
+> > 
+> > ~~~
+> > Warning: Removed 2 rows containing missing values (geom_point).
+> > ~~~
+> > {: .warning}
+> > 
+> > <img src="../fig/rmd-02-unnamed-chunk-18-1.png" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" width="612" style="display: block; margin: auto;" />
 > > In the graph above, each geom inherited all three mappings: x, y and colour. If we want only single linear model to be built, we would need to limit the effect of `colour` aesthetic to only `geom_point()` function, by moving it from the "parent" function to the layer where we want it to apply. Note, though, that because we want the `colour` to be still mapped to the `island` variable, it needs to be wrapped into `aes()` function and supplied to `mapping` argument.
 > {: .solution}
 {: .challenge}
@@ -508,9 +565,39 @@ Error in ggplot(data = penguins, mapping = aes(x = bill_depth_mm, y = bill_lengt
 > > 
 > > 
 > > ~~~
-> > Error in ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)): object 'penguins' not found
+> > `geom_smooth()` using formula 'y ~ x'
 > > ~~~
-> > {: .error}
+> > {: .output}
+> > 
+> > 
+> > 
+> > ~~~
+> > Warning: Removed 2 rows containing non-finite values (stat_smooth).
+> > ~~~
+> > {: .warning}
+> > 
+> > 
+> > 
+> > ~~~
+> > `geom_smooth()` using formula 'y ~ x'
+> > ~~~
+> > {: .output}
+> > 
+> > 
+> > 
+> > ~~~
+> > Warning: Removed 2 rows containing non-finite values (stat_smooth).
+> > ~~~
+> > {: .warning}
+> > 
+> > 
+> > 
+> > ~~~
+> > Warning: Removed 2 rows containing missing values (geom_point).
+> > ~~~
+> > {: .warning}
+> > 
+> > <img src="../fig/rmd-02-unnamed-chunk-19-1.png" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" width="612" style="display: block; margin: auto;" />
 > > Look at that! The data actually reveals something called the "simpsons paradox". It's when a relationship looks to go in a specific direction, but when looking into groups within the data the relationship is the opposite. Here, the overall relationship between bill length and depths looks negative, but when we take into account that there are different species, the relationship is actually positive.
 > {: .solution}
 {: .challenge}
@@ -540,9 +627,25 @@ ggplot(penguins,
 
 
 ~~~
-Error in ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm, colour = species)): object 'penguins' not found
+`geom_smooth()` using formula 'y ~ x'
 ~~~
-{: .error}
+{: .output}
+
+
+
+~~~
+Warning: Removed 2 rows containing non-finite values (stat_smooth).
+~~~
+{: .warning}
+
+
+
+~~~
+Warning: Removed 2 rows containing missing values (geom_point).
+~~~
+{: .warning}
+
+<img src="../fig/rmd-02-unnamed-chunk-20-1.png" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" width="612" style="display: block; margin: auto;" />
 
 The facet's take formula arguments, meaning they contain the `tilde` (~).
 The way often we think about it, trying to "read" the code, is that we facet "over" sex (in this case). 
@@ -565,9 +668,25 @@ ggplot(penguins,
 
 
 ~~~
-Error in ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm, colour = sex)): object 'penguins' not found
+`geom_smooth()` using formula 'y ~ x'
 ~~~
-{: .error}
+{: .output}
+
+
+
+~~~
+Warning: Removed 2 rows containing non-finite values (stat_smooth).
+~~~
+{: .warning}
+
+
+
+~~~
+Warning: Removed 2 rows containing missing values (geom_point).
+~~~
+{: .warning}
+
+<img src="../fig/rmd-02-unnamed-chunk-21-1.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" width="612" style="display: block; margin: auto;" />
 
 The NA's still look weird, but its definitely better, I think. 
 
@@ -591,9 +710,25 @@ The NA's still look weird, but its definitely better, I think.
 > > 
 > > 
 > > ~~~
-> > Error in ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm, colour = sex)): object 'penguins' not found
+> > `geom_smooth()` using formula 'y ~ x'
 > > ~~~
-> > {: .error}
+> > {: .output}
+> > 
+> > 
+> > 
+> > ~~~
+> > Warning: Removed 2 rows containing non-finite values (stat_smooth).
+> > ~~~
+> > {: .warning}
+> > 
+> > 
+> > 
+> > ~~~
+> > Warning: Removed 2 rows containing missing values (geom_point).
+> > ~~~
+> > {: .warning}
+> > 
+> > <img src="../fig/rmd-02-unnamed-chunk-22-1.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" width="612" style="display: block; margin: auto;" />
 > {: .solution}
 {: .challenge}
 
@@ -616,9 +751,25 @@ The NA's still look weird, but its definitely better, I think.
 > > 
 > > 
 > > ~~~
-> > Error in ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm, colour = sex)): object 'penguins' not found
+> > `geom_smooth()` using formula 'y ~ x'
 > > ~~~
-> > {: .error}
+> > {: .output}
+> > 
+> > 
+> > 
+> > ~~~
+> > Warning: Removed 2 rows containing non-finite values (stat_smooth).
+> > ~~~
+> > {: .warning}
+> > 
+> > 
+> > 
+> > ~~~
+> > Warning: Removed 2 rows containing missing values (geom_point).
+> > ~~~
+> > {: .warning}
+> > 
+> > <img src="../fig/rmd-02-unnamed-chunk-23-1.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="612" style="display: block; margin: auto;" />
 > > We now have a grid of facets rather than wrapping rows. THe panels are arranged in a grid of rows and columns, and we can clearly see that there are Adelie penguins on all islands, but the other two species are located on an island each.
 > {: .solution}
 {: .challenge}

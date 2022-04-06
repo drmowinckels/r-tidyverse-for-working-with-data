@@ -21,6 +21,8 @@ source: Rmd
 ```{r, include=FALSE}
 source("../bin/chunk-options.R")
 knitr_fig_path("03-")
+penguins <- palmerpenguins::penguins
+library(tidyverse)
 ```
 
 
@@ -53,7 +55,7 @@ knitr::include_graphics("../fig/selecting.gif")
 ```
 
 We first need to make sure we have the tidyverse loaded and the penguins data set at hand.
-```{r}
+```{r, eval = FALSE}
 library(tidyverse)
 penguins <- read_csv("data/penguins.csv")
 ```

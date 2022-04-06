@@ -41,9 +41,23 @@ penguins %>%
 
 
 ~~~
-Error in penguins %>% mutate(new_var = 1): could not find function "%>%"
+# A tibble: 344 × 9
+   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+   <fct>   <fct>              <dbl>         <dbl>             <int>       <int>
+ 1 Adelie  Torgersen           39.1          18.7               181        3750
+ 2 Adelie  Torgersen           39.5          17.4               186        3800
+ 3 Adelie  Torgersen           40.3          18                 195        3250
+ 4 Adelie  Torgersen           NA            NA                  NA          NA
+ 5 Adelie  Torgersen           36.7          19.3               193        3450
+ 6 Adelie  Torgersen           39.3          20.6               190        3650
+ 7 Adelie  Torgersen           38.9          17.8               181        3625
+ 8 Adelie  Torgersen           39.2          19.6               195        4675
+ 9 Adelie  Torgersen           34.1          18.1               193        3475
+10 Adelie  Torgersen           42            20.2               190        4250
+# … with 334 more rows, and 3 more variables: sex <fct>, year <int>,
+#   new_var <dbl>
 ~~~
-{: .error}
+{: .output}
 
 The output of this can be hard to spot, depending on the size of the screen.
 Let us for convenience create a subsetted data set to work on so we can easily see what we are doing.
@@ -54,13 +68,6 @@ penguins_s <- penguins %>%
   select(1:3, starts_with("bill"))
 ~~~
 {: .language-r}
-
-
-
-~~~
-Error in penguins %>% select(1:3, starts_with("bill")): could not find function "%>%"
-~~~
-{: .error}
 
 Lets try our command again on this new data.
 
@@ -74,9 +81,22 @@ penguins_s %>%
 
 
 ~~~
-Error in penguins_s %>% mutate(new_var = 1): could not find function "%>%"
+# A tibble: 344 × 5
+   species island    bill_length_mm bill_depth_mm new_var
+   <fct>   <fct>              <dbl>         <dbl>   <dbl>
+ 1 Adelie  Torgersen           39.1          18.7       1
+ 2 Adelie  Torgersen           39.5          17.4       1
+ 3 Adelie  Torgersen           40.3          18         1
+ 4 Adelie  Torgersen           NA            NA         1
+ 5 Adelie  Torgersen           36.7          19.3       1
+ 6 Adelie  Torgersen           39.3          20.6       1
+ 7 Adelie  Torgersen           38.9          17.8       1
+ 8 Adelie  Torgersen           39.2          19.6       1
+ 9 Adelie  Torgersen           34.1          18.1       1
+10 Adelie  Torgersen           42            20.2       1
+# … with 334 more rows
 ~~~
-{: .error}
+{: .output}
 
 There is now a new column in the data set called "new_var", and it has the value 1 for all rows!
 This is what we told `mutate()` to do! We specified a new column by name, and gave it a specific value, `1`. 
@@ -93,7 +113,9 @@ penguins_s %>%
 
 
 ~~~
-Error in penguins_s %>% mutate(var = 1:3): could not find function "%>%"
+Error in `mutate()`:
+! Problem while computing `var = 1:3`.
+✖ `var` must be size 344 or 1, not 3.
 ~~~
 {: .error}
 
@@ -110,9 +132,22 @@ penguins_s %>%
 
 
 ~~~
-Error in penguins_s %>% mutate(var = 1:344): could not find function "%>%"
+# A tibble: 344 × 5
+   species island    bill_length_mm bill_depth_mm   var
+   <fct>   <fct>              <dbl>         <dbl> <int>
+ 1 Adelie  Torgersen           39.1          18.7     1
+ 2 Adelie  Torgersen           39.5          17.4     2
+ 3 Adelie  Torgersen           40.3          18       3
+ 4 Adelie  Torgersen           NA            NA       4
+ 5 Adelie  Torgersen           36.7          19.3     5
+ 6 Adelie  Torgersen           39.3          20.6     6
+ 7 Adelie  Torgersen           38.9          17.8     7
+ 8 Adelie  Torgersen           39.2          19.6     8
+ 9 Adelie  Torgersen           34.1          18.1     9
+10 Adelie  Torgersen           42            20.2    10
+# … with 334 more rows
 ~~~
-{: .error}
+{: .output}
 
 But generally, we create new columns based on other data in the data set. So let's do a more useful example. For instance, perhaps we want to use the ratio between the bill length and depth as a measurement for a model.
 
@@ -126,9 +161,22 @@ penguins_s %>%
 
 
 ~~~
-Error in penguins_s %>% mutate(bill_ratio = bill_length_mm/bill_depth_mm): could not find function "%>%"
+# A tibble: 344 × 5
+   species island    bill_length_mm bill_depth_mm bill_ratio
+   <fct>   <fct>              <dbl>         <dbl>      <dbl>
+ 1 Adelie  Torgersen           39.1          18.7       2.09
+ 2 Adelie  Torgersen           39.5          17.4       2.27
+ 3 Adelie  Torgersen           40.3          18         2.24
+ 4 Adelie  Torgersen           NA            NA        NA   
+ 5 Adelie  Torgersen           36.7          19.3       1.90
+ 6 Adelie  Torgersen           39.3          20.6       1.91
+ 7 Adelie  Torgersen           38.9          17.8       2.19
+ 8 Adelie  Torgersen           39.2          19.6       2   
+ 9 Adelie  Torgersen           34.1          18.1       1.88
+10 Adelie  Torgersen           42            20.2       2.08
+# … with 334 more rows
 ~~~
-{: .error}
+{: .output}
 
 So, here we have asked for the ratio between bill length and depth to be calculated and stored in a column named `bill_ratio`. Then we selected just the `bill` columns to have a peak at the output more directly. 
 
@@ -145,9 +193,22 @@ penguins_s %>%
 
 
 ~~~
-Error in penguins_s %>% mutate(bill_ratio = bill_length_mm/bill_depth_mm, : could not find function "%>%"
+# A tibble: 344 × 6
+   species island    bill_length_mm bill_depth_mm bill_ratio bill_length_mm_z[,…
+   <fct>   <fct>              <dbl>         <dbl>      <dbl>               <dbl>
+ 1 Adelie  Torgersen           39.1          18.7       2.09              -0.883
+ 2 Adelie  Torgersen           39.5          17.4       2.27              -0.810
+ 3 Adelie  Torgersen           40.3          18         2.24              -0.663
+ 4 Adelie  Torgersen           NA            NA        NA                 NA    
+ 5 Adelie  Torgersen           36.7          19.3       1.90              -1.32 
+ 6 Adelie  Torgersen           39.3          20.6       1.91              -0.847
+ 7 Adelie  Torgersen           38.9          17.8       2.19              -0.920
+ 8 Adelie  Torgersen           39.2          19.6       2                 -0.865
+ 9 Adelie  Torgersen           34.1          18.1       1.88              -1.80 
+10 Adelie  Torgersen           42            20.2       2.08              -0.352
+# … with 334 more rows
 ~~~
-{: .error}
+{: .output}
 
 > ## Challenge 1
 > Create a column where bill length is transformed to cm. To transform mm to cm, you must divide the mm value by 10. Name the column bill_length_cm.
@@ -163,9 +224,22 @@ Error in penguins_s %>% mutate(bill_ratio = bill_length_mm/bill_depth_mm, : coul
 > > 
 > > 
 > > ~~~
-> > Error in penguins_s %>% mutate(bill_length_cm = bill_length_mm/10): could not find function "%>%"
+> > # A tibble: 344 × 5
+> >    species island    bill_length_mm bill_depth_mm bill_length_cm
+> >    <fct>   <fct>              <dbl>         <dbl>          <dbl>
+> >  1 Adelie  Torgersen           39.1          18.7           3.91
+> >  2 Adelie  Torgersen           39.5          17.4           3.95
+> >  3 Adelie  Torgersen           40.3          18             4.03
+> >  4 Adelie  Torgersen           NA            NA            NA   
+> >  5 Adelie  Torgersen           36.7          19.3           3.67
+> >  6 Adelie  Torgersen           39.3          20.6           3.93
+> >  7 Adelie  Torgersen           38.9          17.8           3.89
+> >  8 Adelie  Torgersen           39.2          19.6           3.92
+> >  9 Adelie  Torgersen           34.1          18.1           3.41
+> > 10 Adelie  Torgersen           42            20.2           4.2 
+> > # … with 334 more rows
 > > ~~~
-> > {: .error}
+> > {: .output}
 > {: .solution}
 {: .challenge}
 
@@ -183,9 +257,23 @@ Error in penguins_s %>% mutate(bill_ratio = bill_length_mm/bill_depth_mm, : coul
 > > 
 > > 
 > > ~~~
-> > Error in penguins %>% mutate(body_mass_kg = body_mass_g/1000): could not find function "%>%"
+> > # A tibble: 344 × 9
+> >    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+> >    <fct>   <fct>              <dbl>         <dbl>             <int>       <int>
+> >  1 Adelie  Torgersen           39.1          18.7               181        3750
+> >  2 Adelie  Torgersen           39.5          17.4               186        3800
+> >  3 Adelie  Torgersen           40.3          18                 195        3250
+> >  4 Adelie  Torgersen           NA            NA                  NA          NA
+> >  5 Adelie  Torgersen           36.7          19.3               193        3450
+> >  6 Adelie  Torgersen           39.3          20.6               190        3650
+> >  7 Adelie  Torgersen           38.9          17.8               181        3625
+> >  8 Adelie  Torgersen           39.2          19.6               195        4675
+> >  9 Adelie  Torgersen           34.1          18.1               193        3475
+> > 10 Adelie  Torgersen           42            20.2               190        4250
+> > # … with 334 more rows, and 3 more variables: sex <fct>, year <int>,
+> > #   body_mass_kg <dbl>
 > > ~~~
-> > {: .error}
+> > {: .output}
 > {: .solution}
 {: .challenge}
 
@@ -203,19 +291,7 @@ The first value after the expression is the value assigned if the expression is 
 ~~~
 penguin_weight <- penguins %>% 
   select(year, body_mass_g)
-~~~
-{: .language-r}
 
-
-
-~~~
-Error in penguins %>% select(year, body_mass_g): could not find function "%>%"
-~~~
-{: .error}
-
-
-
-~~~
 penguin_weight %>% 
   mutate(size = if_else(condition = body_mass_g > 4500, 
                         true = "large", 
@@ -226,9 +302,22 @@ penguin_weight %>%
 
 
 ~~~
-Error in penguin_weight %>% mutate(size = if_else(condition = body_mass_g > : could not find function "%>%"
+# A tibble: 344 × 3
+    year body_mass_g size  
+   <int>       <int> <chr> 
+ 1  2007        3750 normal
+ 2  2007        3800 normal
+ 3  2007        3250 normal
+ 4  2007          NA <NA>  
+ 5  2007        3450 normal
+ 6  2007        3650 normal
+ 7  2007        3625 normal
+ 8  2007        4675 large 
+ 9  2007        3475 normal
+10  2007        4250 normal
+# … with 334 more rows
 ~~~
-{: .error}
+{: .output}
 
 Now we have a column with two values, `large` and `normal` based on whether the penguins are above or below 4.5 kilos.
 
@@ -248,9 +337,11 @@ penguin_weight %>%
 
 
 ~~~
-Error in penguin_weight %>% mutate(size = if_else(condition = body_mass_g > : could not find function "%>%"
+Warning: Removed 2 rows containing missing values (geom_point).
 ~~~
-{: .error}
+{: .warning}
+
+<img src="../fig/rmd-05-unnamed-chunk-12-1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" width="612" style="display: block; margin: auto;" />
 
 That shows us clearly that we have grouped the penguins based on their size. But there is this strange `NA` in the plot legend. what is that? 
 
@@ -278,9 +369,22 @@ penguins_s %>%
 
 
 ~~~
-Error in penguins_s %>% mutate(bill_ratio = bill_depth_mm/bill_length_mm, : could not find function "%>%"
+# A tibble: 344 × 6
+   species island    bill_length_mm bill_depth_mm bill_ratio bill_type
+   <fct>   <fct>              <dbl>         <dbl>      <dbl> <chr>    
+ 1 Adelie  Torgersen           39.1          18.7      0.478 elongated
+ 2 Adelie  Torgersen           39.5          17.4      0.441 elongated
+ 3 Adelie  Torgersen           40.3          18        0.447 elongated
+ 4 Adelie  Torgersen           NA            NA       NA     <NA>     
+ 5 Adelie  Torgersen           36.7          19.3      0.526 stumped  
+ 6 Adelie  Torgersen           39.3          20.6      0.524 stumped  
+ 7 Adelie  Torgersen           38.9          17.8      0.458 elongated
+ 8 Adelie  Torgersen           39.2          19.6      0.5   stumped  
+ 9 Adelie  Torgersen           34.1          18.1      0.531 stumped  
+10 Adelie  Torgersen           42            20.2      0.481 elongated
+# … with 334 more rows
 ~~~
-{: .error}
+{: .output}
 
 Now you've created two variables. One for `bill_ratio`, and then another one conditional on the values of the `bill_ratio`.
 
@@ -302,9 +406,22 @@ penguins_s %>%
 
 
 ~~~
-Error in penguins_s %>% mutate(bill_ratio = bill_depth_mm/bill_length_mm, : could not find function "%>%"
+# A tibble: 344 × 6
+   species island    bill_length_mm bill_depth_mm bill_ratio bill_type
+   <fct>   <fct>              <dbl>         <dbl>      <dbl> <chr>    
+ 1 Adelie  Torgersen           39.1          18.7      0.478 elongated
+ 2 Adelie  Torgersen           39.5          17.4      0.441 elongated
+ 3 Adelie  Torgersen           40.3          18        0.447 elongated
+ 4 Adelie  Torgersen           NA            NA       NA     <NA>     
+ 5 Adelie  Torgersen           36.7          19.3      0.526 stumped  
+ 6 Adelie  Torgersen           39.3          20.6      0.524 stumped  
+ 7 Adelie  Torgersen           38.9          17.8      0.458 elongated
+ 8 Adelie  Torgersen           39.2          19.6      0.5   stumped  
+ 9 Adelie  Torgersen           34.1          18.1      0.531 stumped  
+10 Adelie  Torgersen           42            20.2      0.481 elongated
+# … with 334 more rows
 ~~~
-{: .error}
+{: .output}
 
 But what if we want to categorize based on more than one condition? Nested `if_else()`?
 
@@ -324,9 +441,22 @@ penguins_s %>%
 
 
 ~~~
-Error in penguins_s %>% mutate(bill_ratio = bill_depth_mm/bill_length_mm, : could not find function "%>%"
+# A tibble: 344 × 6
+   species island    bill_length_mm bill_depth_mm bill_ratio bill_type
+   <fct>   <fct>              <dbl>         <dbl>      <dbl> <chr>    
+ 1 Adelie  Torgersen           39.1          18.7      0.478 stumped  
+ 2 Adelie  Torgersen           39.5          17.4      0.441 normal   
+ 3 Adelie  Torgersen           40.3          18        0.447 normal   
+ 4 Adelie  Torgersen           NA            NA       NA     <NA>     
+ 5 Adelie  Torgersen           36.7          19.3      0.526 stumped  
+ 6 Adelie  Torgersen           39.3          20.6      0.524 stumped  
+ 7 Adelie  Torgersen           38.9          17.8      0.458 stumped  
+ 8 Adelie  Torgersen           39.2          19.6      0.5   stumped  
+ 9 Adelie  Torgersen           34.1          18.1      0.531 stumped  
+10 Adelie  Torgersen           42            20.2      0.481 stumped  
+# … with 334 more rows
 ~~~
-{: .error}
+{: .output}
 
 what if you have even more conditionals? It can get pretty messy pretty fast.
 Thankfully, {dplyr} has a smarter way of doing this, called `case_when()`. This function is similar to `if_else()`, but where you specify what each condition should be assigned.
@@ -352,9 +482,11 @@ penguins_s %>%
 
 
 ~~~
-Error in penguins_s %>% mutate(bill_ratio = bill_depth_mm/bill_length_mm, : could not find function "%>%"
+Warning: Removed 2 rows containing missing values (geom_point).
 ~~~
-{: .error}
+{: .warning}
+
+<img src="../fig/rmd-05-unnamed-chunk-16-1.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" width="612" style="display: block; margin: auto;" />
 
 
 That looks almost the same. The `NA`'s are gone! That's not right. We cannot categorize values that are missing. It's our last statement that does this, which just says "make the remainder this value". Which is not what we want. We need the `NA`s to stay `NA`'s. 
@@ -381,9 +513,11 @@ penguins %>%
 
 
 ~~~
-Error in penguins %>% mutate(bill_ratio = bill_depth_mm/bill_length_mm, : could not find function "%>%"
+Warning: Removed 2 rows containing missing values (geom_point).
 ~~~
-{: .error}
+{: .warning}
+
+<img src="../fig/rmd-05-unnamed-chunk-17-1.png" title="plot of chunk unnamed-chunk-17" alt="plot of chunk unnamed-chunk-17" width="612" style="display: block; margin: auto;" />
 
 Here, we use the `is.na()`, which is a special function in R to detect `NA` values. But it also has an `!` in front, what does that mean? In R's logical expressions, the `!` is a negation specifier. It means it flips the logical so the `TRUE` becomes `FALSE`, and *vice versa*. So here, it means the `bill_ratio` is **not** `NA`.
 
@@ -402,9 +536,23 @@ Here, we use the `is.na()`, which is a special function in R to detect `NA` valu
 > > 
 > > 
 > > ~~~
-> > Error in penguins %>% mutate(bill_ld_ratio_log = log(bill_length_mm/bill_depth_mm)): could not find function "%>%"
+> > # A tibble: 344 × 9
+> >    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+> >    <fct>   <fct>              <dbl>         <dbl>             <int>       <int>
+> >  1 Adelie  Torgersen           39.1          18.7               181        3750
+> >  2 Adelie  Torgersen           39.5          17.4               186        3800
+> >  3 Adelie  Torgersen           40.3          18                 195        3250
+> >  4 Adelie  Torgersen           NA            NA                  NA          NA
+> >  5 Adelie  Torgersen           36.7          19.3               193        3450
+> >  6 Adelie  Torgersen           39.3          20.6               190        3650
+> >  7 Adelie  Torgersen           38.9          17.8               181        3625
+> >  8 Adelie  Torgersen           39.2          19.6               195        4675
+> >  9 Adelie  Torgersen           34.1          18.1               193        3475
+> > 10 Adelie  Torgersen           42            20.2               190        4250
+> > # … with 334 more rows, and 3 more variables: sex <fct>, year <int>,
+> > #   bill_ld_ratio_log <dbl>
 > > ~~~
-> > {: .error}
+> > {: .output}
 > {: .solution}
 {: .challenge}
 
@@ -430,9 +578,23 @@ Here, we use the `is.na()`, which is a special function in R to detect `NA` valu
 > > 
 > > 
 > > ~~~
-> > Error in penguins %>% mutate(body_type = case_when(body_mass_g < 3000 ~ : could not find function "%>%"
+> > # A tibble: 344 × 10
+> >    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+> >    <fct>   <fct>              <dbl>         <dbl>             <int>       <int>
+> >  1 Adelie  Torgersen           39.1          18.7               181        3750
+> >  2 Adelie  Torgersen           39.5          17.4               186        3800
+> >  3 Adelie  Torgersen           40.3          18                 195        3250
+> >  4 Adelie  Torgersen           NA            NA                  NA          NA
+> >  5 Adelie  Torgersen           36.7          19.3               193        3450
+> >  6 Adelie  Torgersen           39.3          20.6               190        3650
+> >  7 Adelie  Torgersen           38.9          17.8               181        3625
+> >  8 Adelie  Torgersen           39.2          19.6               195        4675
+> >  9 Adelie  Torgersen           34.1          18.1               193        3475
+> > 10 Adelie  Torgersen           42            20.2               190        4250
+> > # … with 334 more rows, and 4 more variables: sex <fct>, year <int>,
+> > #   body_type <chr>, biscoe <lgl>
 > > ~~~
-> > {: .error}
+> > {: .output}
 > {: .solution}
 {: .challenge}
 
