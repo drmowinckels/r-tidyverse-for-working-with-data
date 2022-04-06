@@ -387,22 +387,6 @@ The NA's still look weird, but its definitely better, I think.
 > {: .solution}
 {: .challenge}
 
-> ## Challenge 8
-> Lets try making the same plot, but this time with facet_grid in stead. Replace facet_wrap with facet_grid, and alter the formula to `species ~ island`. How does that look different?
-> > ## Solution 8
-> >
-> > ```{r}
-> > ggplot(penguins, 
-> >       aes(x = bill_depth_mm, 
-> >           y = bill_length_mm,
-> >           colour = sex)) +
-> >   geom_point(alpha = 0.5) +
-> >   geom_smooth(method = "lm") +
-> >   facet_grid(species ~ island)
-> > ```
-> > We now have a grid of facets rather than wrapping rows. THe panels are arranged in a grid of rows and columns, and we can clearly see that there are Adelie penguins on all islands, but the other two species are located on an island each.
-> {: .solution}
-{: .challenge}
 
 ## Wrap-up
 

@@ -1,5 +1,5 @@
 ---
-title: "Subsetting data with dplyr"
+title: "Data sorting and pipes dplyr"
 teaching: 30
 exercises: 7
 questions:

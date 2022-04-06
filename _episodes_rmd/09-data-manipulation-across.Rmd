@@ -1,0 +1,40 @@
+---
+title: "Subsetting data with dplyr"
+teaching: 45
+exercises: 6
+questions:
+- "How can I make my data into a longer format?"
+- "How can I get my data into a wider format?"
+objectives:
+- "Use `pivot_longer()` to reshape data into a longer format"
+- "Use `pivot_wider()` to reshape data into a wider format"
+keypoints:
+- "Using `pivot_longer`"
+- "Using `pivot_wider`"
+source: Rmd
+---
+
+```{r, include=FALSE}
+source("../bin/chunk-options.R")
+knitr_fig_path("11-")
+penguins <- palmerpenguins::penguins
+library(tidyverse)
+```
+
+
+
+# Wrap-up
+
+We hope these sessions have given your a leg-up in starting you R and tidyverse journey. 
+Remember that learning to code is like learning a new language, the best way to learn is to keep trying. 
+We promise, your efforts will not be in vain as you uncover the power of R and the tidyverse.
+
+## Learning more
+As and end to this workshop, we would like to provide you with some learning materials that might aid you in further pursuits of learning R. 
+
+The [tidyverse webpage](https://www.tidyverse.org/) offers lots of resources on learning the tidyverse way of working, and information
+about what great things you can do with this collection of packages. 
+There is an [R for Datascience](https://www.rfordatasci.com/) learning community that is an excellent and 
+welcoming community of other learners navigating the tidyverse. We wholeheartedly recommend joining this community!
+The [Rstudio community](https://community.rstudio.com/) is also a great place to ask questions or 
+look for solutions for questions you may have, and so is [stackoverflow](https://stackoverflow.com/).

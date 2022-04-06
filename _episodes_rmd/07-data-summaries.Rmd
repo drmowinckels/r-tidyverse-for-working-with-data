@@ -1,7 +1,7 @@
 ---
-title: "Subsetting data with dplyr"
-teaching: 45
-exercises: 6
+title: "Data summaries with dplyr"
+teaching: 60
+exercises: 8
 questions:
 - "How can I create summary tables of my data?"
 - "How can I create different types of summaries based on groups in my data?"
@@ -293,3 +293,105 @@ penguins %>%
 > > ```
 > {: .solution}
 {: .challenge}
+
+
+## Grouped data manipulation
+
+You might have noticed that we managed to do some data manipulation (i.e. `mutate`) while the data were still grouped, 
+which in our example before produced unwanted results.
+But, often, grouping before data manipulation can unlock great new possibilities for working with our data.
+
+Let us use the data we made where we summarised the body mass of penguins in kilograms, and let us group by species and sex.
+
+```{r}
+penguins %>% 
+    drop_na(body_mass_g) %>% 
+    group_by(species, sex) %>%
+    summarise(
+        body_mass_kg_mean = mean(body_mass_g / 1000),
+        body_mass_kg_min = min(body_mass_g / 1000),
+        body_mass_kg_max = max(body_mass_g / 1000)
+    )
+```
+
+The data we get out after that, is still grouped by species.
+Let us say that we want to know, the relative size of the penguin sexes body mass to the species mean.
+We would need the species mean, in addition to the species sex means.
+We can add this, as the data is already grouped by sex, with a mutate.
+
+```{r}
+penguins %>% 
+    drop_na(body_mass_g) %>% 
+    group_by(species, sex) %>%
+    summarise(
+        body_mass_kg_mean = mean(body_mass_g / 1000),
+        body_mass_kg_min = min(body_mass_g / 1000),
+        body_mass_kg_max = max(body_mass_g / 1000)
+    ) %>% 
+    mutate(
+        species_mean = mean(body_mass_kg_mean))
+    )
+```
+
+Notice that now, the same value is in the species_mean column for all the rows of each species.
+This means our calculation worked!
+So, in the same data set, we have everything we need to calculate the relative difference between the species mean of body mass and each of the sexes.
+
+
+```{r}
+penguins %>% 
+    drop_na(body_mass_g) %>% 
+    group_by(species, sex) %>%
+    summarise(
+        body_mass_kg_mean = mean(body_mass_g / 1000),
+        body_mass_kg_min = min(body_mass_g / 1000),
+        body_mass_kg_max = max(body_mass_g / 1000)
+    ) %>% 
+    mutate(
+        species_mean = mean(body_mass_kg_mean)),
+        rel_species = species_mean - body_mass_kg_mean
+    )
+```
+
+Now we can see, with how much the male penguins usually weight compared to the female ones.
+
+
+> ## Challenge 7
+> Calculate the difference in flipper length between the different species of penguin
+> > ## Solution
+> >
+> > ```{r}
+> > penguins %>% 
+> >     drop_na(flipper_length_mm) %>% 
+> >     group_by(species) %>% 
+> >     summarise(
+> >         flipper_mean = mean(flipper_length_mm),
+> >     ) %>% 
+> >     mutate(
+> >         species_mean = mean(flipper_mean),
+> >         flipper_species_diff = species_mean - flipper_mean
+> >     )
+> > ```
+> {: .solution}
+{: .challenge}
+
+> ## Challenge 8
+> Calculate the difference in flipper length between the different species of penguin, split by the penguins sex.
+> > ## Solution
+> >
+> > ```{r}
+> > penguins %>% 
+> >     drop_na(flipper_length_mm) %>% 
+> >     group_by(species, sex) %>% 
+> >     summarise(
+> >         flipper_mean = mean(flipper_length_mm),
+> >     ) %>% 
+> >     mutate(
+> >         species_mean = mean(flipper_mean),
+> >         flipper_species_diff = species_mean - flipper_mean
+> >     )
+> > ```
+> {: .solution}
+{: .challenge}
+
+

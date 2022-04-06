@@ -81,7 +81,7 @@ library(tidyverse)
 
 
 ~~~
-── Attaching packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──
+── Attaching packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──
 ~~~
 {: .output}
 
@@ -98,7 +98,7 @@ library(tidyverse)
 
 
 ~~~
-── Conflicts ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+── Conflicts ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
 ~~~
@@ -732,47 +732,6 @@ The NA's still look weird, but its definitely better, I think.
 > {: .solution}
 {: .challenge}
 
-> ## Challenge 8
-> Lets try making the same plot, but this time with facet_grid in stead. Replace facet_wrap with facet_grid, and alter the formula to `species ~ island`. How does that look different?
-> > ## Solution 8
-> >
-> > 
-> > ~~~
-> > ggplot(penguins, 
-> >       aes(x = bill_depth_mm, 
-> >           y = bill_length_mm,
-> >           colour = sex)) +
-> >   geom_point(alpha = 0.5) +
-> >   geom_smooth(method = "lm") +
-> >   facet_grid(species ~ island)
-> > ~~~
-> > {: .language-r}
-> > 
-> > 
-> > 
-> > ~~~
-> > `geom_smooth()` using formula 'y ~ x'
-> > ~~~
-> > {: .output}
-> > 
-> > 
-> > 
-> > ~~~
-> > Warning: Removed 2 rows containing non-finite values (stat_smooth).
-> > ~~~
-> > {: .warning}
-> > 
-> > 
-> > 
-> > ~~~
-> > Warning: Removed 2 rows containing missing values (geom_point).
-> > ~~~
-> > {: .warning}
-> > 
-> > <img src="../fig/rmd-02-unnamed-chunk-23-1.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="612" style="display: block; margin: auto;" />
-> > We now have a grid of facets rather than wrapping rows. THe panels are arranged in a grid of rows and columns, and we can clearly see that there are Adelie penguins on all islands, but the other two species are located on an island each.
-> {: .solution}
-{: .challenge}
 
 ## Wrap-up
 
