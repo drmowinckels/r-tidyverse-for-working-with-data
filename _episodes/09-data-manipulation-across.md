@@ -30,7 +30,7 @@ We can do that in the following way.
 penguins_s <- penguins %>%
     select(species, starts_with("bill"))
 
-penguins_S %>% 
+penguins_s %>% 
   mutate(
     bill_sum = bill_depth_mm + bill_length_mm
     )
@@ -40,9 +40,22 @@ penguins_S %>%
 
 
 ~~~
-Error in mutate(., bill_sum = bill_depth_mm + bill_length_mm): object 'penguins_S' not found
+# A tibble: 344 × 4
+   species bill_length_mm bill_depth_mm bill_sum
+   <fct>            <dbl>         <dbl>    <dbl>
+ 1 Adelie            39.1          18.7     57.8
+ 2 Adelie            39.5          17.4     56.9
+ 3 Adelie            40.3          18       58.3
+ 4 Adelie            NA            NA       NA  
+ 5 Adelie            36.7          19.3     56  
+ 6 Adelie            39.3          20.6     59.9
+ 7 Adelie            38.9          17.8     56.7
+ 8 Adelie            39.2          19.6     58.8
+ 9 Adelie            34.1          18.1     52.2
+10 Adelie            42            20.2     62.2
+# … with 334 more rows
 ~~~
-{: .error}
+{: .output}
 
 That is pretty straight forward, and we've seen similar types of operations before.
 But what if you want to sum 20 columns, you would need to type our all 20 column names!

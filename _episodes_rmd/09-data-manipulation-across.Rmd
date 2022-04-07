@@ -32,7 +32,7 @@ We can do that in the following way.
 penguins_s <- penguins %>%
     select(species, starts_with("bill"))
 
-penguins_S %>% 
+penguins_s %>% 
   mutate(
     bill_sum = bill_depth_mm + bill_length_mm
     )
