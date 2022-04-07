@@ -253,9 +253,8 @@ We can even combine such pipes with ggplot. Perhaps, in our case so far, the mos
 ```{r}
 penguins %>% 
   filter(sex == "male") %>%
-  ggplot(aes(x = year, y = bill_length_mm)) +
-  geom_point() + 
-  geom_smooth()
+  ggplot(aes(bill_length_mm)) +
+  geom_bar()
 ```
 
 Now we only plot data from the male penguins, if we are particularly interested in those.

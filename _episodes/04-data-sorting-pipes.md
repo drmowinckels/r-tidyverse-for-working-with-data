@@ -604,89 +604,10 @@ We can even combine such pipes with ggplot. Perhaps, in our case so far, the mos
 ~~~
 penguins %>% 
   filter(sex == "male") %>%
-  ggplot(aes(x = year, y = bill_length_mm)) +
-  geom_point() + 
-  geom_smooth()
+  ggplot(aes(bill_length_mm)) +
+  geom_bar()
 ~~~
 {: .language-r}
-
-
-
-~~~
-`geom_smooth()` using method = 'loess' and formula 'y ~ x'
-~~~
-{: .output}
-
-
-
-~~~
-Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-parametric, : pseudoinverse used at 2007
-~~~
-{: .warning}
-
-
-
-~~~
-Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-parametric, : neighborhood radius 2.01
-~~~
-{: .warning}
-
-
-
-~~~
-Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-parametric, : reciprocal condition number 5.2972e-16
-~~~
-{: .warning}
-
-
-
-~~~
-Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-parametric, : There are other near singularities as well. 4.0401
-~~~
-{: .warning}
-
-
-
-~~~
-Warning in predLoess(object$y, object$x, newx = if
-(is.null(newdata)) object$x else if (is.data.frame(newdata))
-as.matrix(model.frame(delete.response(terms(object)), : pseudoinverse used at
-2007
-~~~
-{: .warning}
-
-
-
-~~~
-Warning in predLoess(object$y, object$x, newx = if
-(is.null(newdata)) object$x else if (is.data.frame(newdata))
-as.matrix(model.frame(delete.response(terms(object)), : neighborhood radius 2.01
-~~~
-{: .warning}
-
-
-
-~~~
-Warning in predLoess(object$y, object$x, newx = if
-(is.null(newdata)) object$x else if (is.data.frame(newdata))
-as.matrix(model.frame(delete.response(terms(object)), : reciprocal condition
-number 5.2972e-16
-~~~
-{: .warning}
-
-
-
-~~~
-Warning in predLoess(object$y, object$x, newx = if
-(is.null(newdata)) object$x else if (is.data.frame(newdata))
-as.matrix(model.frame(delete.response(terms(object)), : There are other near
-singularities as well. 4.0401
-~~~
-{: .warning}
 
 <img src="../fig/rmd-04-unnamed-chunk-21-1.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" width="612" style="display: block; margin: auto;" />
 
