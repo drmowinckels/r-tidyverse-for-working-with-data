@@ -305,7 +305,7 @@ penguins_sum %>%
 > >
 > > ```{r}
 > > penguins_sum %>% 
-> >   pivot_longer(c(mean, sd, min, max)),
+> >   pivot_longer(c(mean, sd, min, max),
 > >                names_to = "stat") %>% 
 > >   ggplot(aes(x = species, 
 > >              y = value,
@@ -323,7 +323,7 @@ penguins_sum %>%
 > >
 > > ```{r}
 > > penguins_sum %>% 
-> >   pivot_longer(all_of(c("mean", "sd", "min", "max")),
+> >   pivot_longer(c(mean, sd, min, max),
 > >                names_to = "stat") %>% 
 > >   ggplot(aes(x = species, 
 > >              y = value,
