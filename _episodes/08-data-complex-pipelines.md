@@ -517,7 +517,7 @@ penguins_sum %>%
 > > 
 > > ~~~
 > > penguins_sum %>% 
-> >   pivot_longer(c(mean, sd, min, max)),
+> >   pivot_longer(c(mean, sd, min, max),
 > >                names_to = "stat") %>% 
 > >   ggplot(aes(x = species, 
 > >              y = value,
@@ -528,15 +528,7 @@ penguins_sum %>%
 > > ~~~
 > > {: .language-r}
 > > 
-> > 
-> > 
-> > ~~~
-> > Error: <text>:2:38: unexpected ','
-> > 1: penguins_sum %>% 
-> > 2:   pivot_longer(c(mean, sd, min, max)),
-> >                                         ^
-> > ~~~
-> > {: .error}
+> > <img src="../fig/rmd-08-unnamed-chunk-18-1.png" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" width="612" style="display: block; margin: auto;" />
 > {: .solution}
 {: .challenge}
 
@@ -547,7 +539,7 @@ penguins_sum %>%
 > > 
 > > ~~~
 > > penguins_sum %>% 
-> >   pivot_longer(all_of(c("mean", "sd", "min", "max")),
+> >   pivot_longer(c(mean, sd, min, max),
 > >                names_to = "stat") %>% 
 > >   ggplot(aes(x = species, 
 > >              y = value,
