@@ -30,7 +30,7 @@ We can do that in the following way.
 ```{r}
 penguins %>% 
   mutate(
-    bill_sum = bill_depth_mm + bill_length_mm)
+    bill_sum = bill_depth_mm + bill_length_mm
     )
 ```
 
