@@ -25,10 +25,14 @@ For instance, you want the sum of all columns in a certain collection, or the me
 
 One way, is to write it our entirely.
 Let just pretend there is a good reason to get the sum of bill length and bill depth. 
+Let us also make a subsetted sample with just the bill measurements so we cab easily see what we are doing.
 We can do that in the following way.
 
 ```{r}
-penguins %>% 
+penguins_s <- penguins %>%
+    select(species, starts_with("bill"))
+
+penguins_S %>% 
   mutate(
     bill_sum = bill_depth_mm + bill_length_mm
     )
@@ -39,12 +43,8 @@ But what if you want to sum 20 columns, you would need to type our all 20 column
 Again, tedious. 
 We have a special type of operations we can do to get that easily. 
 We will use the function `sum` to calculate the sum of several variables when using this pipeline.
-Let us also make a subsetted sample with just the bill measurements so we cab easily see what we are doing.
 
 ```{r}
-penguins_s <- penguins %>%
-    select(species, starts_with("bill"))
-
 penguins_s %>%
     mutate(bill_sum = sum(c_across(starts_with("bill"))))
 ```

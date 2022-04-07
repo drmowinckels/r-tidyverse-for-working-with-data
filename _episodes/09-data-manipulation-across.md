@@ -22,11 +22,15 @@ For instance, you want the sum of all columns in a certain collection, or the me
 
 One way, is to write it our entirely.
 Let just pretend there is a good reason to get the sum of bill length and bill depth. 
+Let us also make a subsetted sample with just the bill measurements so we cab easily see what we are doing.
 We can do that in the following way.
 
 
 ~~~
-penguins %>% 
+penguins_s <- penguins %>%
+    select(species, starts_with("bill"))
+
+penguins_S %>% 
   mutate(
     bill_sum = bill_depth_mm + bill_length_mm
     )
@@ -36,36 +40,18 @@ penguins %>%
 
 
 ~~~
-# A tibble: 344 × 9
-   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
-   <fct>   <fct>              <dbl>         <dbl>             <int>       <int>
- 1 Adelie  Torgersen           39.1          18.7               181        3750
- 2 Adelie  Torgersen           39.5          17.4               186        3800
- 3 Adelie  Torgersen           40.3          18                 195        3250
- 4 Adelie  Torgersen           NA            NA                  NA          NA
- 5 Adelie  Torgersen           36.7          19.3               193        3450
- 6 Adelie  Torgersen           39.3          20.6               190        3650
- 7 Adelie  Torgersen           38.9          17.8               181        3625
- 8 Adelie  Torgersen           39.2          19.6               195        4675
- 9 Adelie  Torgersen           34.1          18.1               193        3475
-10 Adelie  Torgersen           42            20.2               190        4250
-# … with 334 more rows, and 3 more variables: sex <fct>, year <int>,
-#   bill_sum <dbl>
+Error in mutate(., bill_sum = bill_depth_mm + bill_length_mm): object 'penguins_S' not found
 ~~~
-{: .output}
+{: .error}
 
 That is pretty straight forward, and we've seen similar types of operations before.
 But what if you want to sum 20 columns, you would need to type our all 20 column names!
 Again, tedious. 
 We have a special type of operations we can do to get that easily. 
 We will use the function `sum` to calculate the sum of several variables when using this pipeline.
-Let us also make a subsetted sample with just the bill measurements so we cab easily see what we are doing.
 
 
 ~~~
-penguins_s <- penguins %>%
-    select(species, starts_with("bill"))
-
 penguins_s %>%
     mutate(bill_sum = sum(c_across(starts_with("bill"))))
 ~~~
