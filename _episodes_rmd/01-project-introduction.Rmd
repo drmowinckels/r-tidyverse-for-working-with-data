@@ -1,6 +1,6 @@
 ---
 title: "Introduction to R and RStudio"
-teaching: 30
+teaching: 45
 exercises: 4
 questions:
 - "How to find your way around RStudio?"
@@ -10,7 +10,6 @@ questions:
 objectives:
 - "Describe the purpose and use of each pane in the RStudio IDE"
 - "Locate buttons and options in the RStudio IDE"
-- "Manage packages"
 - "Create and use R-projects"
 - "How to organise and access project files"
 keypoints:

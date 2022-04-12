@@ -1,6 +1,6 @@
 ---
 title: "Reshaping data with tidyr"
-teaching: 45
+teaching: 60
 exercises: 6
 questions:
 - "How can I make my data into a longer format?"

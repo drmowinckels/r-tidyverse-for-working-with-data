@@ -329,7 +329,7 @@ penguins %>%
         body_mass_kg_max = max(body_mass_g / 1000)
     ) %>% 
     mutate(
-        species_mean = mean(body_mass_kg_mean))
+        species_mean = mean(body_mass_kg_mean)
     )
 ```
 
@@ -348,7 +348,7 @@ penguins %>%
         body_mass_kg_max = max(body_mass_g / 1000)
     ) %>% 
     mutate(
-        species_mean = mean(body_mass_kg_mean)),
+        species_mean = mean(body_mass_kg_mean),
         rel_species = species_mean - body_mass_kg_mean
     )
 ```

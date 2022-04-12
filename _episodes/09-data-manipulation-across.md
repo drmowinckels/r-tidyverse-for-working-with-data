@@ -13,6 +13,7 @@ source: Rmd
 ---
 
 
+
 ## Motivation
 
 We have covered many topics so far, and changing (or mutating) variables has been a key consept. 
@@ -57,7 +58,7 @@ penguins_s %>%
 ~~~
 {: .output}
 
-That is pretty straight forward, and we've seen similar types of operations before.
+We've seen similar types of operations before.
 But what if you want to sum 20 columns, you would need to type our all 20 column names!
 Again, tedious. 
 We have a special type of operations we can do to get that easily. 
@@ -159,7 +160,7 @@ penguins_s %>%
 ~~~
 {: .output}
 
-> ## Challenge 3
+> ## Challenge 1
 > Calculate the mean of all the columns with millimeter measurements, an call it `mm_mean`, for each row of data.
 > > ## Solution 
 > >
@@ -197,7 +198,7 @@ penguins_s %>%
 > {: .solution}
 {: .challenge}
 
-> ## Challenge 3
+> ## Challenge 2
 > Calculate the mean of all the columns with millimeter measurements, an call it `mm_mean`, for each row of data.
 > Then, group the data by species, and calculate the mean of the `mm_mean` within each species and add it as a column named `mm_mean_species`.
 > Ignore `NA`s in the last calculation
@@ -373,7 +374,7 @@ Internally, `across()` stores the column names in a vector it calls `.col`.
 We can use this knowledge to tell the across function what to name our new columns. 
 In this case, we want to append the column name with `_sc`. 
 
-> ## Challenge 1
+> ## Challenge 3
 > Transform all the colmns with an underscore in their name so they are scaled, and add the _prefix_ `sc_` to the columns names.
 > > ## Solution 
 > >
@@ -410,7 +411,7 @@ In this case, we want to append the column name with `_sc`.
 > {: .solution}
 {: .challenge}
 
-> ## Challenge 2
+> ## Challenge 4
 > Transform all the colmns with an underscore in their name so they are scaled, and add the _prefix_ `sc_` to the columns names. 
 > Add another _standard_ change of the body mass column to kilograms
 > _Hint: you can add a standard mutate within the same mutate as across_

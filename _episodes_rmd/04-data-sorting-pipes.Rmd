@@ -1,6 +1,6 @@
 ---
 title: "Data sorting and pipes dplyr"
-teaching: 30
+teaching: 60
 exercises: 7
 questions:
 - "How can I sort the rows in my data?"
