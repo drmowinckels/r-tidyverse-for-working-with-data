@@ -2,7 +2,7 @@
 title: Setup
 ---
 
-{% include install-r.html %}
+{% include install-instructions/r.html %}
 
 In addition, your should install the tidyverse package before arriving to the workshop.
 You can do this by opening your newly installed RStudio, and in the window named "console", copy the following and press "Enter".
